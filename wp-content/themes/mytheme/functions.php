@@ -137,15 +137,13 @@ function get_user_role() {
 }
 
 
-
-
 /**
  * Subscriber-Validate
  */
 add_action(
 	'template_redirect',
 	function() {
-		$page_id = 1996;
+		$page_id = 1996;// page id of author center .
 		$user    = get_user_role();// fetching user role .
 
 		if ( is_user_logged_in() && 'subscriber' == $user ) {
