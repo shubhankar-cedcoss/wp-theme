@@ -122,3 +122,56 @@ add_theme_support( 'title-tag' );
  * Editor-style
  */
 add_editor_style( 'css/custom-editor-style.css' );
+
+/**
+ * Validate
+ */
+function get_user_role() {
+	global $current_user;
+
+	$user_roles = $current_user->roles;
+
+	$user_role = array_shift( $user_roles );
+
+	return $user_role;
+}
+
+
+
+
+/**
+ * Subscriber-Validate
+ */
+add_action(
+	'template_redirect',
+	function() {
+		$page_id = 1996;
+		$user    = get_user_role();// fetching user role .
+
+		if ( is_user_logged_in() && 'subscriber' == $user ) {
+			$redirect = false;
+
+			if ( is_page() && is_page( $page_id ) ) {
+				$redirect = true;
+			}
+
+			if ( $redirect ) {
+				wp_redirect( esc_url( home_url() ), 307 );// redirecting user to home page if redirect is true .
+			}
+		}
+		elseif ( ! is_user_logged_in() ) {
+			$redirect = false;
+
+			if ( is_page() && ( is_page( 1996 ) || is_page( 1998 ) )) {
+				$redirect = true;
+			}
+
+			if ( $redirect ) {
+				wp_redirect( esc_url( wp_login_url() ), 307 );
+			}
+		}
+		elseif ( is_user_logged_in() && 'author' == $user ) {
+			$redirect = false;
+		}
+	}
+);

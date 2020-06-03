@@ -13,7 +13,14 @@
  * @subpackage mytheme
  */
 
-get_header(); ?>
+get_header();
+$user = get_user_role();
+echo  $user;
+
+
+?>
+
+
 
 <!-- Page Content -->
 <div class="container">
