@@ -20,25 +20,23 @@ echo $user;
 
 ?>
 
-<?php if ( get_theme_mod( 'basic-author-callout-display' ) === 'Yes' ) { ?>
+<?php if (get_theme_mod('basic-author-callout-display') == 'Yes') { ?>
 <div class="row row-padding author">
-	<div class="col-6 author-image">
-	<img src="<?php echo wp_get_attachment_url( get_theme_mod( 'basic-author-callout-image' ) ); ?>" alt="Author Image">
-	</div>
-	<div class="col-6 author-content">
-		<?php
-		$authorText = get_theme_mod( 'basic-author-callout-text' );
-		if ( '' !== $authorText ) {
-				echo wpautop( $authorText );
-		} else {
-				echo 'Edit this by going to your Dashboard -> Appearance -> Customise -> Author Editor';
-		}
-		?>
-	</div>
+    <div class="col-6 author-image">
+    <img src="<?php echo wp_get_attachment_url(get_theme_mod('basic-author-callout-image')) ?>" alt="Author Image">
+    </div>
+    <div class="col-6 author-content">
+        <?php 
+            $authorText = get_theme_mod('basic-author-callout-text');
+            if ($authorText != '') {
+                echo wpautop($authorText);
+            } else {
+                echo "Edit this by going to your Dashboard -> Appearance -> Customise -> Author Editor";
+            }
+        ?>
+    </div>
 </div> 
 <?php } ?>
-
-
 
 <!-- Page Content -->
 <div class="container">
@@ -83,17 +81,6 @@ echo $user;
 						<a class="page-link" href="#">Newer &rarr;</a>
 					</li>
 				</ul>
-
-				<?php
-				the_posts_pagination(
-					array(
-						'prev_text'          => __( 'Older', 'mytheme' ),
-						'next_text'          => __( 'Newer', 'mytheme' ),
-						'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'mytheme' ) . ' </span>',
-					)
-				);
-
-				?>
 
 			</div>
 

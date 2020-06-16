@@ -87,7 +87,7 @@ function my_register_sidebars() {
 		array(
 			'id'            => 'primary',
 			'name'          => __( 'Primary Sidebar' ),
-			'description'   => __( 'A short description of the sidebar.' ),
+			'description'   => __( 'Dynamic right sidebar.' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h3 class="widget-title">',
@@ -146,7 +146,7 @@ add_action(
 		$page_id = 1996;// page id of author center .
 		$user    = get_user_role();// fetching user role .
 
-		if ( is_user_logged_in() && 'subscriber' == $user ) {
+		if ( is_user_logged_in() && 'subscriber' === $user ) {
 			$redirect = false;
 
 			if ( is_page() && is_page( $page_id ) ) {
@@ -154,22 +154,46 @@ add_action(
 			}
 
 			if ( $redirect ) {
-				wp_redirect( esc_url( home_url() ), 307 );// redirecting user to home page if redirect is true .
+				wp_safe_redirect( esc_url( home_url() ), 307 );// redirecting user to home page if redirect is true .
 			}
-		}
-		elseif ( ! is_user_logged_in() ) {
+		} elseif ( ! is_user_logged_in() ) {
 			$redirect = false;
 
-			if ( is_page() && ( is_page( 1996 ) || is_page( 1998 ) )) {
+			if ( is_page() && ( is_page( 1996 ) || is_page( 1998 ) ) ) {
 				$redirect = true;
 			}
 
 			if ( $redirect ) {
-				wp_redirect( esc_url( wp_login_url() ), 307 );
+				wp_safe_redirect( esc_url( wp_login_url() ), 307 );
 			}
-		}
-		elseif ( is_user_logged_in() && 'author' == $user ) {
+		} elseif ( is_user_logged_in() && 'author' === $user ) {
 			$redirect = false;
 		}
 	}
 );
+
+// Customize widgets .
+require get_stylesheet_directory() . '/inc/class-my-widget.php';
+new My_Widget();
+
+
+// Customizer Settings .
+require get_stylesheet_directory() . '/inc/class-mytheme-customizer.php';
+new Mytheme_Customizer();
+
+
+/**
+ * Register the "book" custom post type
+ */
+function pluginprefix_setup_post_type() {
+	register_post_type( 'book', array( 'public' => true ) );
+}
+add_action( 'init', 'pluginprefix_setup_post_type' );
+
+
+
+
+
+
+
+

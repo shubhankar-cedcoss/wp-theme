@@ -44,6 +44,15 @@ if ( have_posts() ) {
 		<?php the_date(); ?>
 		<a href="#"><?php the_author(); ?></a>
 	</div>
+		<?php
+		if ( comments_open() ) {
+			?>
+			<div class="comments-area">
+				<?php comments_template(); ?>
+			</div>
+			<?php
+		}
+		?>
 </div>
 		<?php
 	}
@@ -51,13 +60,24 @@ if ( have_posts() ) {
 ?>
 <!-- Pagination -->
 <ul class="pagination justify-content-center mb-4">
-<li class="page-item">
-<a class="page-link" href="#">&larr; Older</a>
-</li>
-<li class="page-item disabled">
-<a class="page-link" href="#">Newer &rarr;</a>
-</li>
+	<li class="page-item">
+		<a class="page-link" href="#">&larr; Older</a>
+	</li>
+	<li class="page-item disabled">
+		<a class="page-link" href="#">Newer &rarr;</a>
+	</li>
 </ul>
+
+<?php
+the_posts_pagination(
+	array(
+		'prev_text'          => __( 'Older', 'mytheme' ),
+		'next_text'          => __( 'Newer', 'mytheme' ),
+		'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'mytheme' ) . ' </span>',
+	)
+);
+
+?>
 
 </div>
 
