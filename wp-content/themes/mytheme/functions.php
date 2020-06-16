@@ -182,13 +182,6 @@ require get_stylesheet_directory() . '/inc/class-mytheme-customizer.php';
 new Mytheme_Customizer();
 
 
-/**
- * Register the "book" custom post type
- */
-function pluginprefix_setup_post_type() {
-	register_post_type( 'book', array( 'public' => true ) );
-}
-add_action( 'init', 'pluginprefix_setup_post_type' );
 
 
 

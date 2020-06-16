@@ -15,6 +15,21 @@
  */
 
 /**
+ * Register the "book" custom post type
+ */
+function pluginprefix_setup_post_type() {
+	register_post_type(
+		'book',
+		array(
+			'public' => true,
+			'label'  => 'Book',
+		)
+	);
+}
+add_action( 'init', 'pluginprefix_setup_post_type' );
+
+
+/**
  * Activate the plugin.
  */
 function pluginprefix_activate() {
@@ -40,4 +55,3 @@ register_deactivation_hook( __FILE__, 'pluginprefix_deactivate' );
  *Uninstall plugin
  */
 register_uninstall_hook( __FILE__, 'pluginprefix_function_to_run' );
-
