@@ -50,3 +50,17 @@ function hello_world_deactivation() {
  *Uninstall plugin
  */
 register_uninstall_hook( __FILE__, 'pluginprefix_function_to_run' );
+
+/**
+ * To filter content
+ *
+ * @param [string] $content is a string .
+ */
+function filter_content( $content ) {
+	if ( is_single() ) {
+		$url     = "<a href ='https://twitter.com/intent/tweet?url=<?=urlencode($url)?>'>Twitter Link</a>";
+		$content = $url . $content;
+	}
+	return $content;
+}
+add_filter( 'the_content', 'filter_content' );
