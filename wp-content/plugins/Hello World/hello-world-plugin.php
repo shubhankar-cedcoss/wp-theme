@@ -69,6 +69,8 @@ add_filter( 'the_content', 'filter_content' );
 /**
  * To count number of charcaters in post
  * With (wp_strip_all_tags) you get rid of all the HTML tags.
+ *
+ * @param [string] $content is a string .
  */
 function count_character( $content ) {
 	if ( is_single() ) {
