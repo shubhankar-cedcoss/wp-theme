@@ -58,7 +58,8 @@ register_uninstall_hook( __FILE__, 'pluginprefix_function_to_run' );
  */
 function filter_content( $content ) {
 	if ( is_single() ) {
-		$link    = "<a href ='https://twitter.com/intent/tweet?url=<?=urlencode($url)?>'>Twitter Link</a>";
+		$url     = get_permalink();
+		$link    = '<a href ="https://twitter.com/intent/tweet?url=' . urlencode( $url ) . '">Twitter Link</a>';
 		$content = $link . $content;
 	}
 	return $content;
