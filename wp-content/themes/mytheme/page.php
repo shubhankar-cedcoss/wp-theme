@@ -27,9 +27,9 @@ echo $user;
 	</div>
 	<div class="col-6 author-content">
 		<?php
-		$authorText = get_theme_mod( 'basic-author-callout-text' );
-		if ( '' !== $authorText ) {
-				echo wpautop( $authorText );
+		$author_text = get_theme_mod( 'basic-author-callout-text' );
+		if ( '' !== $author_text ) {
+				echo wpautop( $author_text );
 		} else {
 				echo 'Edit this by going to your Dashboard -> Appearance -> Customise -> Author Editor';
 		}

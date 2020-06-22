@@ -18,6 +18,16 @@
 <footer class="py-5 bg-dark">
 <div class="container">
 <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+<?php
+
+$option = get_option( 'wporg_options ' );
+
+?>
+<a href="<?php esc_html_e( $option['wporg_field_fb'] ); ?>" ><span class="iconify" data-icon="dashicons:facebook" height="50" width="40" data-inline="false"></span></a>
+
+
+<a href="<?php esc_html_e( $option['wporg_field_twitter'] ); ?>" ><span class="iconify" data-icon="dashicons:twitter" height="50" width="40" data-inline="false"></span></a>
+
 </div>
 <!-- /.container -->
 </footer>

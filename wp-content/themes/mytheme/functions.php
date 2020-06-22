@@ -28,6 +28,7 @@ function themeslug_enqueue_script() {
 	wp_enqueue_script( 'jquery', '', array(), '1.1', true );
 
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/vendor/bootstrap/js/bootstrap.bundle.min.js', array(), '1.1', false );
+
 }
 add_action( 'wp_enqueue_scripts', 'themeslug_enqueue_style' );
 add_action( 'wp_enqueue_scripts', 'themeslug_enqueue_script' );
@@ -49,6 +50,7 @@ add_action( 'init', 'register_my_menus' );
 *Thumbnail
 */
 add_theme_support( 'post-thumbnails' );
+add_image_size( 'mycustomimage', 700, 300, true );// true is for the option of crop the image .
 
 /**
  * Post format
@@ -177,16 +179,8 @@ require get_stylesheet_directory() . '/inc/class-my-widget.php';
 new My_Widget();
 
 
+
+
 // Customizer Settings .
 require get_stylesheet_directory() . '/inc/class-mytheme-customizer.php';
 new Mytheme_Customizer();
-
-
-
-
-
-
-
-
-
-

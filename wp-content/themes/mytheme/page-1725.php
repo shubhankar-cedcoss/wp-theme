@@ -20,7 +20,7 @@ echo $user;
 
 ?>
 
-<?php if (get_theme_mod('basic-author-callout-display') == 'Yes') { ?>
+<?php if ( get_theme_mod( 'basic-author-callout-display' ) === 'Yes' ) { ?>
 <div class="row row-padding author">
     <div class="col-6 author-image">
     <img src="<?php echo wp_get_attachment_url(get_theme_mod('basic-author-callout-image')) ?>" alt="Author Image">
