@@ -23,10 +23,10 @@
 $option = get_option( 'wporg_options ' );
 
 ?>
-<a href="<?php esc_html_e( $option['wporg_field_fb'] ); ?>" ><span class="iconify" data-icon="dashicons:facebook" height="50" width="40" data-inline="false"></span></a>
+<a href="<?php echo( $option['wporg_field_fb'] ); ?>" ><span class="iconify" data-icon="dashicons:facebook" height="50" width="40" data-inline="false"></span></a>
 
 
-<a href="<?php esc_html_e( $option['wporg_field_twitter'] ); ?>" ><span class="iconify" data-icon="dashicons:twitter" height="50" width="40" data-inline="false"></span></a>
+<a href="<?php echo( $option['wporg_field_twitter'] ); ?>" ><span class="iconify" data-icon="dashicons:twitter" height="50" width="40" data-inline="false"></span></a>
 
 </div>
 <!-- /.container -->

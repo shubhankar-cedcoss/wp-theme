@@ -69,6 +69,52 @@ function count_character( $content ) {
 }
 add_filter( 'the_content', 'count_character' );
 
+/**
+ * To filter content
+ *
+ * @param [string] $content is a string .
+ */
+function feedback_form( $content ) {
+	if ( is_single(2095) ) {
+		?>
+		<div class="container">    
+			<form>    
+				<div class="row">    
+					<div class="col-25">    
+						<label for="name">Name :   </label>    
+					</div>    
+					<div class="col-75">    
+						<input type="text" id="name" name="name" placeholder="Your name..">    
+					</div>    
+				</div>      
+					<div class="row">    
+						<div class="col-25">    
+						<label for="email">Mail Id :   </label>    
+						</div>    
+						<div class="col-75">    
+						<input type="email" id="email" name="mailid" placeholder="Your mail id..">    
+						</div>    
+					</div>    
+					<div class="row">    
+					<div class="col-25">    
+						<label for="feed_back">Feed Back :   </label>    
+					</div>    
+					<div class="col-75">    
+						<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>    
+					</div>    
+					</div>    
+					<div class="row">    
+					<input type="submit" value="Submit">    
+				</div>    
+			</form>    
+		</div>
+		<?php
+		$content = $content;
+	}
+	return $content;
+}
+add_filter( 'the_content', 'feedback_form' );
+
 
 /**
  * This is plugin template file
@@ -98,7 +144,7 @@ function wporg_settings_init() {
 		'wporg_field_fb', // as of WP 4.6 this value is used only internally
 		// use $args' label_for to populate the id inside the callback .
 		__( 'Facebook :', 'wporg' ),
-		'wporg_field_fb_cb',
+		'wporg_field_fb',
 		'wporg',
 		'wporg_section_developers',
 		array(
@@ -112,7 +158,7 @@ function wporg_settings_init() {
 		'wporg_field_twitter', // as of WP 4.6 this value is used only internally
 		// use $args' label_for to populate the id inside the callback .
 		__( 'Twitter :', 'wporg' ),
-		'wporg_field_twitter_cb', // callback funciton .
+		'wporg_field_twitter', // callback funciton .
 		'wporg',
 		'wporg_section_developers',
 		array(
@@ -156,7 +202,7 @@ function wporg_section_developers_cb( $args ) {
  * the "class" key value is used for the "class" attribute of the <tr> containing the field.
  * you can add custom key value pairs to be used inside your callbacks.
  */
-function wporg_field_fb_cb( $args ) {
+function wporg_field_fb( $args ) {
 	?>
 		<textarea id="<?php echo esc_attr( $args['label_for'] ); ?>" name="wporg_options[<?php echo esc_attr( $args['label_for'] ); ?>]"></textarea>
 	<?php
@@ -172,7 +218,7 @@ function wporg_field_fb_cb( $args ) {
  * the "class" key value is used for the "class" attribute of the <tr> containing the field.
  * you can add custom key value pairs to be used inside your callbacks.
  */
-function wporg_field_twitter_cb( $args ) {
+function wporg_field_twitter( $args ) {
 	?>
 		<textarea id="<?php echo esc_attr( $args['label_for'] ); ?>" name="wporg_options[<?php echo esc_attr( $args['label_for'] ); ?>]"></textarea>
 
@@ -221,6 +267,18 @@ function wporg_options_page_html() {
 	settings_errors( 'wporg_messages' );
 	?>
 	<div class="wrap">
+	<table>
+		<tbody>
+			<tr>
+				<td><input class="pref" checked="checked" name="book" type="radio" value="Sycamore Row" />Sycamore Row</td>
+				<td>John Grisham</td>
+			</tr>
+			<tr>
+				<td><input class="pref" name="book" type="radio" value="Dark Witch" />Dark Witch</td>
+				<td>Nora Roberts</td>
+			</tr>
+		</tbody>
+	</table>
 		<h1>
 			<?php echo esc_html( get_admin_page_title() ); ?>
 		</h1>
@@ -311,3 +369,45 @@ function register_taxonomy_course() {
 }
 
 add_action( 'init', 'register_taxonomy_course', 0 );
+
+
+add_action( 'admin_enqueue_scripts', 'my_enqueue' );
+/**
+ * Enqueuing scripts
+ *
+ * @param [string] $hook stores current files .
+ */
+function my_enqueue( $hook ) {
+	wp_enqueue_script(
+		'ajax-script',
+		plugins_url( '/js/simple-ajax-example.js', __FILE__ ),
+		array( 'jquery' )
+	);
+	$title_nonce = wp_create_nonce( 'title_example' );
+	wp_localize_script(
+		'ajax-script',
+		'my_ajax_obj',
+		array(
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce'    => $title_nonce,
+		)
+	);
+}
+
+add_action( 'wp_ajax_my_tag_count', 'my_ajax_handler' );
+
+/**
+ * Handler of ajax
+ */
+function my_ajax_handler() {
+	check_ajax_referer( 'title_example' );
+	update_user_meta( get_current_user_id(), 'title_preference', $_POST['title'] );
+	$args      = array(
+		'tag' => $_POST['title'],
+	);
+	$the_query = new WP_Query( $args );
+	echo $_POST['title'] . ' (' . $the_query->post_count . ') ';
+	wp_die(); // all ajax handlers should die when finished .
+}
+
+
