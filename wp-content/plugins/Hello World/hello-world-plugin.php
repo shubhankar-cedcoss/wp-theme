@@ -45,7 +45,7 @@ register_uninstall_hook( __FILE__, 'pluginprefix_function_to_run' );
  * @param [string] $content is a string .
  */
 function filter_content( $content ) {
-	if ( is_single() ) {
+	if ( ! is_single( 2102 ) ) {
 		$url     = get_permalink();
 		$link    = '<a href ="https://twitter.com/intent/tweet?url=' . rawurlencode( $url ) . '">Twitter Link</a>';
 		$content = $link . $content;
@@ -61,7 +61,7 @@ add_filter( 'the_content', 'filter_content' );
  * @param [string] $content is a string .
  */
 function count_character( $content ) {
-	if ( is_single() ) {
+	if ( ! is_single( 2102 ) ) {
 		global $post;
 		$count = strlen( wp_strip_all_tags( $post->post_content ) );
 	}
@@ -75,45 +75,92 @@ add_filter( 'the_content', 'count_character' );
  * @param [string] $content is a string .
  */
 function feedback_form( $content ) {
-	if ( is_single(2095) ) {
+	if ( is_single( 2102 ) ) {
 		?>
-		<div class="container">    
-			<form>    
+		<div class="container">       
 				<div class="row">    
 					<div class="col-25">    
 						<label for="name">Name :   </label>    
 					</div>    
 					<div class="col-75">    
-						<input type="text" id="name" name="name" placeholder="Your name..">    
+						<input type="text" id="first_name" name="name" placeholder="Your name..">    
 					</div>    
-				</div>      
-					<div class="row">    
+				</div>   
+				<br>   
+				<div class="row">    
 						<div class="col-25">    
 						<label for="email">Mail Id :   </label>    
 						</div>    
 						<div class="col-75">    
 						<input type="email" id="email" name="mailid" placeholder="Your mail id..">    
 						</div>    
-					</div>    
-					<div class="row">    
+				</div>    
+				<br> 
+				<div class="row">    
 					<div class="col-25">    
 						<label for="feed_back">Feed Back :   </label>    
 					</div>    
-					<div class="col-75">    
+				<div class="col-75">    
 						<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>    
 					</div>    
-					</div>    
-					<div class="row">    
-					<input type="submit" value="Submit">    
 				</div>    
-			</form>    
+				<br> 
+				<div class="row">    
+					<input type="submit" id="form_submit" class="btn btn-primary" value="Submit">   
+				</div>    
+				<br>   
 		</div>
 		<?php
-		$content = $content;
 	}
 	return $content;
 }
 add_filter( 'the_content', 'feedback_form' );
+
+add_action( 'wp_enqueue_scripts', 'my_enqueue_ajax' );
+
+/**
+ * Enqueuing scripts
+ *
+ * @param [string] $hook stores current files .
+ */
+function my_enqueue_ajax( $hook ) {
+	wp_enqueue_script(
+		'ajax-script',
+		plugins_url( '/js/simple-ajax-example.js', __FILE__ ),
+		array( 'jquery' )
+	);
+	$title_nonce = wp_create_nonce( 'title_example' );
+	wp_localize_script(
+		'ajax-script',
+		'my_ajax_obj',
+		array(
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce'    => $title_nonce,
+		)
+	);
+}
+
+add_action( 'wp_ajax_my_form', 'my_ajax_handler_ajax' );
+/**
+ * Handler of ajax
+ */
+function my_ajax_handler_ajax() {
+	if ( isset( $_POST ) ) {
+		// Create post object .
+		$my_post = array(
+			'post_title'   => wp_strip_all_tags( wp_unslash( $_POST['name'] ) ),
+			'post_content' => wp_unslash( $_POST['subject'] ) . '<br>' . "<a href='" . wp_unslash( $_POST['email'] ) . "'>Email</a>",
+			'post_status'  => 'publish',
+			'post_author'  => 1,
+			'post_type'    => 'Feedback',
+		);
+	};
+
+	// Insert the post into the database .
+		wp_insert_post( $my_post );
+
+		wp_die(); // all ajax handlers should die when finished .
+};
 
 
 /**
@@ -370,8 +417,45 @@ function register_taxonomy_course() {
 
 add_action( 'init', 'register_taxonomy_course', 0 );
 
+/**
+ * Create post type
+ */
+function custom_post_type_feedback() {
+	$labels = array(
+		'name'               => 'Feedback',
+		'singular_name'      => 'feedback',
+		'add_new'            => 'Add Feedback',
+		'all_items'          => 'All Feedbacks',
+		'add_new_item'       => 'Add Feedback',
+		'edit_item'          => 'Edit Feedback',
+		'new_item'           => 'New Feedback',
+		'view_item'          => 'View Feedback',
+		'search_item'        => 'Search Feedback',
+		'not_found'          => 'No Feedback found',
+		'not_found_in_trash' => 'No Feedback found in trash',
+		'parent_item_colon'  => 'Parent Feedback',
+	);
+	$args   = array(
+		'labels'          => $labels,
+		'public'          => true,
+		'has_archive'     => true,
+		'rewrite'         => true,
+		'capability_type' => 'post',
+		'menu_position'   => 4,
+		'show_in_rest'    => true,
+		'supports'        => array(
+			'editor',
+			'thumbnail',
+			'excerpt',
+		),
+	);
+	register_post_type( 'feedback', $args );
+}
+add_action( 'init', 'custom_post_type_feedback' );
+
 
 add_action( 'admin_enqueue_scripts', 'my_enqueue' );
+
 /**
  * Enqueuing scripts
  *
@@ -403,11 +487,9 @@ function my_ajax_handler() {
 	check_ajax_referer( 'title_example' );
 	update_user_meta( get_current_user_id(), 'title_preference', $_POST['title'] );
 	$args      = array(
-		'tag' => $_POST['title'],
+		'tag' => wp_unslash( $_POST['title'] ),
 	);
 	$the_query = new WP_Query( $args );
-	echo $_POST['title'] . ' (' . $the_query->post_count . ') ';
+	esc_html_e( wp_unslash( $_POST['title'] ) . ' (' . $the_query->post_count . ') ' );
 	wp_die(); // all ajax handlers should die when finished .
 }
-
-

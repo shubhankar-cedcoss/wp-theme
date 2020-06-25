@@ -22,12 +22,16 @@
 
 $option = get_option( 'wporg_options ' );
 
-?>
+if ( ! is_single( 2095 ) ) {
+	?>
+
 <a href="<?php echo( $option['wporg_field_fb'] ); ?>" ><span class="iconify" data-icon="dashicons:facebook" height="50" width="40" data-inline="false"></span></a>
 
 
 <a href="<?php echo( $option['wporg_field_twitter'] ); ?>" ><span class="iconify" data-icon="dashicons:twitter" height="50" width="40" data-inline="false"></span></a>
-
+	<?php
+}
+?>
 </div>
 <!-- /.container -->
 </footer>

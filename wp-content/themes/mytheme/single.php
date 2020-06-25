@@ -23,41 +23,60 @@ get_header(); ?>
 
 <!-- Blog Entries Column -->
 <div class="col-md-8">
-
-<h1 class="my-4">Page Heading
-<small>Secondary Text</small>
-</h1>
-<?php
-if ( have_posts() ) {
-	while ( have_posts() ) {
-		the_post();
+	<?php
+	if ( ! is_single( 2102 ) ) {
 		?>
-<!-- Blog Post -->
-<div class="card mb-4">
-	<img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-	<div class="card-body">        
-		<h2 class="card-title"><?php the_title(); ?></h2>
-			<?php the_content(); ?>
-		<a href="#" class="btn btn-primary">Read More &rarr;</a>
-	</div>
-	<div class="card-footer text-muted">
-		<?php the_date(); ?>
-		<a href="#"><?php the_author(); ?></a>
-	</div>
-		<?php
-		if ( comments_open() ) {
-			?>
-			<div class="comments-area">
-				<?php comments_template(); ?>
-			</div>
-			<?php
-		}
-		?>
-</div>
+		<h1 class="my-4">Page Heading
+		<small>Secondary Text</small>
+		</h1>	
 		<?php
 	}
-}
-?>
+
+	if ( have_posts() ) {
+		while ( have_posts() ) {
+			the_post();
+			?>
+<!-- Blog Post -->
+<div class="card mb-4">
+			<?php
+			if ( ! is_single( 2102 ) ) {
+				?>
+					<img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+					<?php
+			}
+			?>
+	<div class="card-body">        
+		<h2 class="card-title"><?php the_title(); ?></h2>
+			<?php
+			the_content();
+
+			if ( ! is_single( 2102 ) ) {
+				?>
+				<a href="#" class="btn btn-primary">Read More &rarr;</a>
+				<?php
+			}
+			?>
+	</div>
+	<div class="card-footer text-muted">
+			<?php the_date(); ?>
+		<a href="#"><?php the_author(); ?></a>
+	</div>
+			<?php
+			if ( ! is_single( 2102 ) ) {
+				if ( comments_open() ) {
+					?>
+					<div class="comments-area">
+						<?php comments_template(); ?>
+					</div>
+					<?php
+				}
+			}
+			?>
+	</div>
+			<?php
+		}
+	}
+	?>
 <!-- Pagination -->
 <ul class="pagination justify-content-center mb-4">
 	<li class="page-item">

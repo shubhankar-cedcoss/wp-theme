@@ -12,3 +12,37 @@ jQuery(document).ready(function($) {       //wrapper
         });
     });
 });
+
+jQuery(document).ready(function($){
+    $('#form_submit').on('click',function(){
+        //alert('hello world');
+        $name = $('#first_name').val();
+        //alert($name);
+        $email = $('#email').val();
+        //alert($email);
+        $subject = $('#subject').val();
+        //alert($subject);
+
+        $.ajax({
+            url : my_ajax_obj.ajax_url,
+
+            method : 'POST',
+
+            data :        
+            {
+                'name' : $name,
+                'email' : $email,
+                'subject' : $subject,
+                'action' : 'my_form',
+            },
+
+            success : function(data){
+                console.log(data);
+            },
+            error : function(errorThrown){
+                console.error(errorThrown);
+            }
+        });
+    });
+});
+	
