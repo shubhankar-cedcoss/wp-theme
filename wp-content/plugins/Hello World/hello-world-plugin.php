@@ -88,19 +88,19 @@ function feedback_form( $content ) {
 				</div>   
 				<br>   
 				<div class="row">    
-						<div class="col-25">    
+					<div class="col-25">    
 						<label for="email">Mail Id :   </label>    
-						</div>    
-						<div class="col-75">    
+					</div>    
+					<div class="col-75">    
 						<input type="email" id="email" name="mailid" placeholder="Your mail id..">    
-						</div>    
+					</div>    
 				</div>    
 				<br> 
 				<div class="row">    
 					<div class="col-25">    
 						<label for="feed_back">Feed Back :   </label>    
 					</div>    
-				<div class="col-75">    
+					<div class="col-75">    
 						<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>    
 					</div>    
 				</div>    
