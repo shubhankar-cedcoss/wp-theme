@@ -140,6 +140,26 @@ function my_enqueue_ajax( $hook ) {
 	);
 }
 
+if ( ! empty( $_REQUEST['nonce'] ) ) {
+
+	$nonce = wp_unslash( $_REQUEST['nonce'] );
+	if ( ! wp_verify_nonce( $nonce, 'ajax_nonce' ) ) {
+		echo 'Noncce value cannot be verified';
+	}
+}
+
+if ( isset( $_REQUEST['name'] ) ) {
+	$name = sanitize_html_class( wp_unslash( $_REQUEST['name'] ) );
+}
+
+if ( isset( $_REQUEST['email'] ) ) {
+	$name = sanitize_html_class( wp_unslash( $_REQUEST['email'] ) );
+}
+
+if ( isset( $_REQUEST['subject'] ) ) {
+	$name = sanitize_html_class( wp_unslash( $_REQUEST['subject'] ) );
+}
+
 add_action( 'wp_ajax_my_form', 'my_ajax_handler_ajax' );
 /**
  * Handler of ajax
@@ -148,7 +168,7 @@ function my_ajax_handler_ajax() {
 	if ( isset( $_POST ) ) {
 		// Create post object .
 		$my_post = array(
-			'post_title'   => wp_strip_all_tags( wp_unslash( $_POST['name'] ) ),
+			'post_title'   => wp_strip_all_tags( $_POST['name'] ),
 			'post_content' => wp_unslash( $_POST['subject'] ) . '<br>' . "<a href='" . wp_unslash( $_POST['email'] ) . "'>Email</a>",
 			'post_status'  => 'publish',
 			'post_author'  => 1,
