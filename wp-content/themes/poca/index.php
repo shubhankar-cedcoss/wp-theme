@@ -37,7 +37,7 @@ get_header();
               <!-- Welcome Music Area -->
               <div class="poca-music-area mt-100 d-flex align-items-center flex-wrap" data-animation="fadeInUp" data-delay="900ms">
                 <div class="poca-music-thumbnail">
-                  <img src="./img/bg-img/4.jpg" alt="">
+                  <img src="<?php echo get_template_directory_uri(); ?>/img/bg-img/4.jpg" alt="">
                 </div>
                 <div class="poca-music-content">
                   <span class="music-published-date">December 9, 2018</span>
@@ -191,193 +191,46 @@ get_header();
 
     <div class="container">
       <div class="row poca-portfolio">
+		<?php
+		if( have_posts() ) {
+			while( have_posts() ) {
+				the_post(); 
+		?>
 
-        <!-- Single gallery Item -->
-        <div class="col-12 col-md-6 single_gallery_item entre wow fadeInUp" data-wow-delay="0.2s">
-          <!-- Welcome Music Area -->
-          <div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
-            <div class="poca-music-thumbnail">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/bg-img/5.jpg" alt="">
-            </div>
-            <div class="poca-music-content text-center">
-              <span class="music-published-date mb-2">December 9, 2018</span>
-              <h2>Episode 201 - You Don’t Know Squat!</h2>
-              <div class="music-meta-data">
-                <p>By <a href="#" class="music-author">Admin</a> | <a href="#" class="music-catagory">Tutorials</a> | <a href="#" class="music-duration">00:02:56</a></p>
-              </div>
-              <!-- Music Player -->
-              <div class="poca-music-player">
-                <audio preload="auto" controls>
-                  <source src="audio/dummy-audio.mp3">
-                </audio>
-              </div>
-              <!-- Likes, Share & Download -->
-              <div class="likes-share-download d-flex align-items-center justify-content-between">
-                <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Like (29)</a>
-                <div>
-                  <a href="#" class="mr-4"><i class="fa fa-share-alt" aria-hidden="true"></i> Share(04)</a>
-                  <a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Single gallery Item -->
-        <div class="col-12 col-md-6 single_gallery_item entre tutor wow fadeInUp" data-wow-delay="0.2s">
-          <!-- Welcome Music Area -->
-          <div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
-            <div class="poca-music-thumbnail">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/bg-img/6.jpg" alt="">
-            </div>
-            <div class="poca-music-content text-center">
-              <span class="music-published-date mb-2">December 9, 2018</span>
-              <h2>Episode 202 - I Want A New Judge!</h2>
-              <div class="music-meta-data">
-                <p>By <a href="#" class="music-author">Admin</a> | <a href="#" class="music-catagory">Tutorials</a> | <a href="#" class="music-duration">00:02:56</a></p>
-              </div>
-              <!-- Music Player -->
-              <div class="poca-music-player">
-                <audio preload="auto" controls>
-                  <source src="audio/dummy-audio.mp3">
-                </audio>
-              </div>
-              <!-- Likes, Share & Download -->
-              <div class="likes-share-download d-flex align-items-center justify-content-between">
-                <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Like (29)</a>
-                <div>
-                  <a href="#" class="mr-4"><i class="fa fa-share-alt" aria-hidden="true"></i> Share(04)</a>
-                  <a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Single gallery Item -->
-        <div class="col-12 col-md-6 single_gallery_item media wow fadeInUp" data-wow-delay="0.2s">
-          <!-- Welcome Music Area -->
-          <div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
-            <div class="poca-music-thumbnail">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/bg-img/7.jpg" alt="">
-            </div>
-            <div class="poca-music-content text-center">
-              <span class="music-published-date mb-2">December 9, 2018</span>
-              <h2>Episode 203 - The Last Blockbuster</h2>
-              <div class="music-meta-data">
-                <p>By <a href="#" class="music-author">Admin</a> | <a href="#" class="music-catagory">Tutorials</a> | <a href="#" class="music-duration">00:02:56</a></p>
-              </div>
-              <!-- Music Player -->
-              <div class="poca-music-player">
-                <audio preload="auto" controls>
-                  <source src="audio/dummy-audio.mp3">
-                </audio>
-              </div>
-              <!-- Likes, Share & Download -->
-              <div class="likes-share-download d-flex align-items-center justify-content-between">
-                <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Like (29)</a>
-                <div>
-                  <a href="#" class="mr-4"><i class="fa fa-share-alt" aria-hidden="true"></i> Share(04)</a>
-                  <a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Single gallery Item -->
-        <div class="col-12 col-md-6 single_gallery_item media wow fadeInUp" data-wow-delay="0.2s">
-          <!-- Welcome Music Area -->
-          <div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
-            <div class="poca-music-thumbnail">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/bg-img/8.jpg" alt="">
-            </div>
-            <div class="poca-music-content text-center">
-              <span class="music-published-date mb-2">December 9, 2018</span>
-              <h2>Episode 204 - The Last Blockbuster</h2>
-              <div class="music-meta-data">
-                <p>By <a href="#" class="music-author">Admin</a> | <a href="#" class="music-catagory">Tutorials</a> | <a href="#" class="music-duration">00:02:56</a></p>
-              </div>
-              <!-- Music Player -->
-              <div class="poca-music-player">
-                <audio preload="auto" controls>
-                  <source src="audio/dummy-audio.mp3">
-                </audio>
-              </div>
-              <!-- Likes, Share & Download -->
-              <div class="likes-share-download d-flex align-items-center justify-content-between">
-                <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Like (29)</a>
-                <div>
-                  <a href="#" class="mr-4"><i class="fa fa-share-alt" aria-hidden="true"></i> Share(04)</a>
-                  <a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Single gallery Item -->
-        <div class="col-12 col-md-6 single_gallery_item tech tutor wow fadeInUp" data-wow-delay="0.2s">
-          <!-- Welcome Music Area -->
-          <div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
-            <div class="poca-music-thumbnail">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/bg-img/9.jpg" alt="">
-            </div>
-            <div class="poca-music-content text-center">
-              <span class="music-published-date mb-2">December 9, 2018</span>
-              <h2>Episode 205 - See Ya In Three!</h2>
-              <div class="music-meta-data">
-                <p>By <a href="#" class="music-author">Admin</a> | <a href="#" class="music-catagory">Tutorials</a> | <a href="#" class="music-duration">00:02:56</a></p>
-              </div>
-              <!-- Music Player -->
-              <div class="poca-music-player">
-                <audio preload="auto" controls>
-                  <source src="audio/dummy-audio.mp3">
-                </audio>
-              </div>
-              <!-- Likes, Share & Download -->
-              <div class="likes-share-download d-flex align-items-center justify-content-between">
-                <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Like (29)</a>
-                <div>
-                  <a href="#" class="mr-4"><i class="fa fa-share-alt" aria-hidden="true"></i> Share(04)</a>
-                  <a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Single gallery Item -->
-        <div class="col-12 col-md-6 single_gallery_item tech wow fadeInUp" data-wow-delay="0.2s">
-          <!-- Welcome Music Area -->
-          <div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
-            <div class="poca-music-thumbnail">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/bg-img/10.jpg" alt="">
-            </div>
-            <div class="poca-music-content text-center">
-              <span class="music-published-date mb-2">December 9, 2018</span>
-              <h2>Episode 206 - Let’s Get This Party Started!</h2>
-              <div class="music-meta-data">
-                <p>By <a href="#" class="music-author">Admin</a> | <a href="#" class="music-catagory">Tutorials</a> | <a href="#" class="music-duration">00:02:56</a></p>
-              </div>
-              <!-- Music Player -->
-              <div class="poca-music-player">
-                <audio preload="auto" controls>
-                  <source src="audio/dummy-audio.mp3">
-                </audio>
-              </div>
-              <!-- Likes, Share & Download -->
-              <div class="likes-share-download d-flex align-items-center justify-content-between">
-                <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Like (29)</a>
-                <div>
-                  <a href="#" class="mr-4"><i class="fa fa-share-alt" aria-hidden="true"></i> Share(04)</a>
-                  <a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+				<!-- Single gallery Item -->
+				<div class="col-12 col-md-6 single_gallery_item entre wow fadeInUp" data-wow-delay="0.2s">
+				<!-- Welcome Music Area -->
+				<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
+					<div class="poca-music-thumbnail">
+					<?php the_post_thumbnail(); ?>
+					</div>
+					<div class="poca-music-content text-center">
+					<span class="music-published-date mb-2"><?php the_date(); ?></span>
+					<h2><?php the_title(); ?></h2>
+					<div class="music-meta-data">
+						<p>By <a href="#" class="music-author"><?php the_author(); ?></a> | <a href="#" class="music-catagory">Tutorials</a> | <a href="#" class="music-duration"><?php the_time(); ?></a></p>
+					</div>
+					<!-- Music Player -->
+					<div class="poca-music-player">
+						<audio preload="auto" controls>
+						<source src="audio/dummy-audio.mp3">
+						</audio>
+					</div>
+					<!-- Likes, Share & Download -->
+					<div class="likes-share-download d-flex align-items-center justify-content-between">
+						<a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Like (29)</a>
+						<div>
+						<a href="#" class="mr-4"><i class="fa fa-share-alt" aria-hidden="true"></i> Share(04)</a>
+						<a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
+						</div>
+					</div>
+					</div>
+				</div>
+				</div>
+				<?php
+			}
+		}     
+		?>
       </div>
     </div>
 
@@ -440,6 +293,32 @@ get_header();
       </div>
     </div>
   </section>
+  <!-- ***** Featured Guests Area End ***** -->
+
+   <!-- ***** Newsletter Area Start ***** -->
+   <section class="poca-newsletter-area bg-img bg-overlay pt-50 jarallax" style="background-image: url(<?php echo get_template_directory_uri(); ?>/img/bg-img/15.jpg)">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- Newsletter Content -->
+        <div class="col-12 col-lg-6">
+          <div class="newsletter-content mb-50">
+            <h2>Sign Up To Newsletter</h2>
+            <h6>Subscribe to receive info on our latest news and episodes</h6>
+          </div>
+        </div>
+        <!-- Newsletter Form -->
+        <div class="col-12 col-lg-6">
+          <div class="newsletter-form mb-50">
+            <form action="#" method="post">
+              <input type="email" name="nl-email" class="form-control" placeholder="Your Email">
+              <button type="submit" class="btn">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ***** Newsletter Area End ***** -->
 
    <!-- ***** Footer Area Start ***** -->
    <footer class="footer-area section-padding-80-0">
