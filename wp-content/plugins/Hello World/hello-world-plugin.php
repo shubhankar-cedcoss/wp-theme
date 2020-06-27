@@ -75,12 +75,12 @@ add_filter( 'the_content', 'count_character' );
  * @param [string] $content is a string .
  */
 function feedback_form( $content ) {
-	if ( is_single( 2102 ) ) {
+	if ( is_single( array( 2113, 2102 ) ) ) {
 		?>
 		<div class="container">       
 				<div class="row">    
 					<div class="col-25">    
-						<label for="name">Name :   </label>    
+						<label for="name">Name :</label>    
 					</div>    
 					<div class="col-75">    
 						<input type="text" id="first_name" name="name" placeholder="Your name..">    
@@ -89,7 +89,7 @@ function feedback_form( $content ) {
 				<br>   
 				<div class="row">    
 					<div class="col-25">    
-						<label for="email">Mail Id :   </label>    
+						<label for="email">Mail Id :</label>    
 					</div>    
 					<div class="col-75">    
 						<input type="email" id="email" name="mailid" placeholder="Your mail id..">    
@@ -98,7 +98,7 @@ function feedback_form( $content ) {
 				<br> 
 				<div class="row">    
 					<div class="col-25">    
-						<label for="feed_back">Feed Back :   </label>    
+						<label for="feed_back">Feed Back :</label>    
 					</div>    
 					<div class="col-75">    
 						<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>    
@@ -142,7 +142,7 @@ function my_enqueue_ajax( $hook ) {
 
 if ( ! empty( $_REQUEST['nonce'] ) ) {
 
-	$nonce = wp_unslash( $_REQUEST['nonce'] );
+	$nonce = sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) );
 	if ( ! wp_verify_nonce( $nonce, 'ajax_nonce' ) ) {
 		echo 'Noncce value cannot be verified';
 	}
@@ -165,11 +165,18 @@ add_action( 'wp_ajax_my_form', 'my_ajax_handler_ajax' );
  * Handler of ajax
  */
 function my_ajax_handler_ajax() {
+	if ( ! empty( $_REQUEST['nonce'] ) ) {
+
+		$nonce = sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) );
+		if ( ! wp_verify_nonce( $nonce, 'ajax_nonce' ) ) {
+			echo 'Noncce value cannot be verified';
+		}
+	}
 	if ( isset( $_POST ) ) {
 		// Create post object .
 		$my_post = array(
-			'post_title'   => wp_strip_all_tags( $_POST['name'] ),
-			'post_content' => wp_unslash( $_POST['subject'] ) . '<br>' . "<a href='" . wp_unslash( $_POST['email'] ) . "'>Email</a>",
+			'post_title'   => wp_strip_all_tags( wp_unslash( isset( $_POST['name'] ) ) ),
+			'post_content' => sanitize_text_field( wp_unslash( isset( $_POST['subject'] ) ) ) . '<br>' . "<a href='" . sanitize_text_field( wp_unslash( isset( $_POST['email'] ) ) ) . "'>Email</a>",
 			'post_status'  => 'publish',
 			'post_author'  => 1,
 			'post_type'    => 'Feedback',
@@ -325,6 +332,13 @@ function wporg_options_page_html() {
 
 	// check if the user have submitted the settings
 	// WordPress will add the "settings-updated" $_GET parameter to the url .
+	if ( ! empty( $_REQUEST['nonce'] ) ) {
+
+		$nonce = sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) );
+		if ( ! wp_verify_nonce( $nonce, 'ajax_nonce' ) ) {
+			echo 'Noncce value cannot be verified';
+		}
+	}
 	if ( isset( $_GET['settings-updated'] ) ) {
 		// add settings saved message with the class of "updated" .
 		add_settings_error( 'wporg_messages', 'wporg_message', __( 'Settings Saved', 'wporg' ), 'updated' );
@@ -505,11 +519,13 @@ add_action( 'wp_ajax_my_tag_count', 'my_ajax_handler' );
  */
 function my_ajax_handler() {
 	check_ajax_referer( 'title_example' );
-	update_user_meta( get_current_user_id(), 'title_preference', $_POST['title'] );
-	$args      = array(
-		'tag' => wp_unslash( $_POST['title'] ),
-	);
-	$the_query = new WP_Query( $args );
-	esc_html_e( wp_unslash( $_POST['title'] ) . ' (' . $the_query->post_count . ') ' );
-	wp_die(); // all ajax handlers should die when finished .
+	if ( isset( $_POST ) ) {
+		update_user_meta( get_current_user_id(), 'title_preference', wp_unslash( isset( $_POST['title'] ) ) );
+		$args      = array(
+			'tag' => wp_unslash( isset( $_POST['title'] ) ),
+		);
+		$the_query = new WP_Query( $args );
+		esc_html_e( sanitize_text_field( wp_unslash( $_POST['title'] ) ) . ' (' . $the_query->post_count . ') ' );
+		wp_die(); // all ajax handlers should die when finished .
+	}
 }

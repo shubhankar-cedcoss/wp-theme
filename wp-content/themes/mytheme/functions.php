@@ -29,16 +29,11 @@ function themeslug_enqueue_script() {
 
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/vendor/bootstrap/js/bootstrap.bundle.min.js', array(), '1.1', false );
 
+	wp_enqueue_script( 'icon', 'https://code.iconify.design/1/1.0.6/iconify.min.js', array(), '1.1', false );
 }
 add_action( 'wp_enqueue_scripts', 'themeslug_enqueue_style' );
 add_action( 'wp_enqueue_scripts', 'themeslug_enqueue_script' );
 
-/**
- * Enqueing javascript.
- */
-function icon_enqueue_script() {
-	wp_enqueue_script( 'icon', 'https://code.iconify.design/1/1.0.6/iconify.min.js', array(), '1.1', true );
-}
 
 
 /**
