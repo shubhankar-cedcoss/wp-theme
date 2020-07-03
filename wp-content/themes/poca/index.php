@@ -46,8 +46,9 @@
               <a href="<?php the_permalink(); ?>" class="post-title"><?php the_title(); ?></a>
               <div class="post-meta mb-15">
                 <a href="#" class="post-author"><?php the_author(); ?></a> |
+
                 <?php the_category(','); ?>
-                <!-- <a href="#" class="post-catagory"><?php //the_category(); ?></a> -->
+                
               </div>
               <?php the_excerpt(); ?>
               <a href="<?php the_permalink(); ?>" class="read-more-btn">Continue reading <i class="fa fa-angle-right" aria-hidden="true"></i></a>
@@ -61,14 +62,6 @@
 
         <?php get_sidebar(); ?>
 
-          <!-- Pagination -->
-          <!-- <div class="poca-pager d-flex mb-80">
-            <a href="#">Previous Post</a>
-            <a href="#">Next Post</a>
-          </div> -->
-
-         
-        
       </div>
            
     </div>

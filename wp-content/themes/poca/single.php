@@ -112,20 +112,6 @@ get_header();
 								</div>
 								<?php
 							}
-							?>
-						
-						<?php
-						// Exit the function when comments for the post are closed.
-						if ( ! comments_open() ) {
-							/**
-							* Fires after the comment form if comments are closed.
-							*
-							* @since 3.0.0
-							*/
-							do_action( 'comment_form_comments_closed' );
-					
-							return;
-						}
 						?>
 
 						<div class="contact-form">
