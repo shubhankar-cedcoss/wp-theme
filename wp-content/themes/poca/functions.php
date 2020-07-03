@@ -236,6 +236,11 @@ function my_comments_callback($comment, $args, $depth){
 	?>
 	<li class="single_comment_area">
 		<!-- Comment Content -->
+		<?php 
+			if($comment->comment_approved == '0') {
+
+			}
+		?>
 		<div class="comment-content d-flex">
 			<!-- Comment Author -->
 			<div class="comment-author">
@@ -251,7 +256,6 @@ function my_comments_callback($comment, $args, $depth){
 				<?php comment_reply_link( array_merge($args, array(
 					'reply_text' => __('Reply', 'textdomain'),
 					'depth'      => $depth,
-					'max_depth'  => $args['max_depth'],
 					)
 				));?>
 			</div>
@@ -260,6 +264,40 @@ function my_comments_callback($comment, $args, $depth){
 	</li>
 		<?php 
 }
+
+/**
+ * Code to reorder input field
+ */
+function wpb_move_comment_field_to_bottom( $fields ) {
+	$comment = $fields['comment'];
+	unset( $fields['comment'] );
+	$fields['comment'] = $comment;
+
+	$cookie = $fields['cookies'];
+	unset( $fields['cookies']);
+	$fields['cookies'] = $cookie;
+
+	return $fields;
+
+	}
+	 
+add_filter( 'comment_form_fields', 'wpb_move_comment_field_to_bottom' );
+
+/**
+ * Code to add div with class row in comment form
+ */
+function comment_before_fields() {
+    echo '<div class="row">';
+}
+add_action('comment_form_before_fields', 'comment_before_fields');
+
+function comment_after_fields() {
+    echo '</div>';
+}
+add_action('comment_form_after_fields', 'comment_after_fields');
+
 ?>
+
+
 					
 	

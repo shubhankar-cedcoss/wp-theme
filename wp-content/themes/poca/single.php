@@ -115,25 +115,34 @@ get_header();
 						?>
 
 						<div class="contact-form">
-							<h5 class="mb-30">Leave A Comment</h5>
+							<?php
+								$comment_name= 'Name';//placeholder
+								$comment_email= 'Email';
+								$comment_body= 'Comment';
 
-							<!-- Form -->
-							<form action="#" method="post">
-								<div class="row">
-									<div class="col-lg-6">
-										<input type="text" name="message-name" class="form-control mb-30" placeholder="Name">
-									</div>
-									<div class="col-lg-6">
-										<input type="email" name="message-email" class="form-control mb-30" placeholder="Email">
-									</div>
-									<div class="col-12">
-										<textarea name="message" class="form-control mb-30" placeholder="Comment"></textarea>
-									</div>
-									<div class="col-12">
-										<button type="submit" class="btn poca-btn mt-30">Post Comment</button>
-									</div>
-								</div>
-							</form>
+								$args =  array(
+								'fields' => array(
+									'author' => '<div class="col-lg-6">
+												<input type="text" name="author" id="author" class="form-control mb-30" placeholder="'. $comment_name .'">
+												</div>',
+									
+									'email'  => '<div class="col-lg-6">
+												<input type="email" name="email" id="email" class="form-control mb-30" placeholder="'. $comment_email .'">
+												</div>',
+
+								),
+								'comment_field' => '<div class="col-12">
+												<textarea name="comment" id="comment" class="form-control mb-30" placeholder="'. $comment_body .'"></textarea>
+												</div>',
+								'submit_button' => '<div class="col-12">
+												<button name="%1$s" type="submit" id="%2$s" value="%4$s"  class="btn poca-btn mt-30 %3$s">Post Comment</button>
+												</div>',
+								
+								'title_reply' => '<h5> Leave A Comment </h5>', 
+							);
+							
+							comment_form($args)
+							?>
 						</div>
 					</div>
 				</div>

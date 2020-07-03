@@ -1100,7 +1100,7 @@ ul {
         .comment_area .comment-content .comment-meta p {
           font-size: 14px; } }
     .comment_area .comment-content .comment-meta a.like,
-    .comment_area .comment-content .comment-meta a.reply {
+    .comment_area .comment-content .comment-meta a.comment-reply-link {
       display: inline-block;
       padding: 5px 15px 3px;
       font-size: 12px;
@@ -1108,8 +1108,8 @@ ul {
       border: 1px solid #ebebeb;
       text-transform: uppercase; }
       .comment_area .comment-content .comment-meta a.like:focus, .comment_area .comment-content .comment-meta a.like:hover,
-      .comment_area .comment-content .comment-meta a.reply:focus,
-      .comment_area .comment-content .comment-meta a.reply:hover {
+      .comment_area .comment-content .comment-meta a.comment-reply-link:focus,
+      .comment_area .comment-content .comment-meta a.comment-reply-link:hover {
         border-color: #f55656;
         background-color: #f55656;
         color: #ffffff; }
