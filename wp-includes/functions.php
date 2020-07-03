@@ -1,6 +1,5 @@
 <?php
 /**
- * This is a main template
  * Main WordPress API
  *
  * @package WordPress
@@ -299,6 +298,7 @@ function wp_date( $format, $timestamp = null, $timezone = null ) {
 	 * @param string       $format    Format to display the date.
 	 * @param int          $timestamp Unix timestamp.
 	 * @param DateTimeZone $timezone  Timezone.
+	 *
 	 */
 	$date = apply_filters( 'wp_date', $date, $format, $timestamp, $timezone );
 
@@ -730,8 +730,8 @@ function maybe_serialize( $data ) {
  *
  * @global string $post_default_title Default XML-RPC post title.
  *
- * @param string $content XMLRPC XML Request content .
- * @return string Post title .
+ * @param string $content XMLRPC XML Request content
+ * @return string Post title
  */
 function xmlrpc_getposttitle( $content ) {
 	global $post_default_title;
@@ -827,8 +827,8 @@ function wp_extract_urls( $content ) {
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
- * @param string  $content Post content. If `null`, the `post_content` field from `$post` is used.
- * @param int |WP_Post  $post  Post ID or post object.
+ * @param string         $content Post content. If `null`, the `post_content` field from `$post` is used.
+ * @param int|WP_Post    $post    Post ID or post object.
  * @return null|bool Returns false if post is not found.
  */
 function do_enclose( $content = null, $post ) {
@@ -996,13 +996,13 @@ function build_query( $data ) {
  *
  * @see https://www.php.net/manual/en/function.http-build-query.php
  *
- * @param array|object $data       An array or object of data. Converted to array.
- * @param string       $prefix     Optional. Numeric index. If set, start parameter numbering with it.
- *                                 Default null.
- * @param string       $sep        Optional. Argument separator; defaults to 'arg_separator.output'.
- *                                 Default null.
- * @param string       $key        Optional. Used to prefix key name. Default empty.
- * @param bool         $urlencode  Optional. Whether to use urlencode() in the result. Default true.
+ * @param array|object  $data       An array or object of data. Converted to array.
+ * @param string        $prefix     Optional. Numeric index. If set, start parameter numbering with it.
+ *                                  Default null.
+ * @param string        $sep        Optional. Argument separator; defaults to 'arg_separator.output'.
+ *                                  Default null.
+ * @param string        $key        Optional. Used to prefix key name. Default empty.
+ * @param bool          $urlencode  Optional. Whether to use urlencode() in the result. Default true.
  *
  * @return string The query string.
  */
@@ -1667,7 +1667,7 @@ function do_favicon() {
 	 */
 	do_action( 'do_faviconico' );
 
-	wp_redirect( get_site_icon_url( 32, admin_url( 'images/w-logo-blue.png' ) ) );
+	wp_redirect( get_site_icon_url( 32, includes_url( 'images/w-logo-blue-white-bg.png' ) ) );
 	exit;
 }
 

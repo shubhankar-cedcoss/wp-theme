@@ -7,11 +7,24 @@
  * @package poca
  */
 
-if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-	return;
-}
-?>
 
-<aside id="secondary" class="widget-area">
-	<?php dynamic_sidebar( 'sidebar-1' ); ?>
-</aside><!-- #secondary -->
+?>
+<div class="col-12 col-lg-4">	
+	  <div class="sidebar-area mt-5">
+        
+      <div class="single-widget-area search-widget-area mb-80">
+        <?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
+          <?php dynamic_sidebar( 'sidebar-1' ); ?>
+          <?php
+            else :
+              echo 'No widgets to display!';
+              ?>
+          <!-- Time to add some widgets! -->
+        <?php endif; ?>
+      </div>
+     
+		</div>
+</div>
+
+
+           

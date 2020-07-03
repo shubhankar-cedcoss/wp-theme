@@ -436,7 +436,7 @@ ul {
         .classy-nav-container .classy-navbar .classynav ul li a {
           border-bottom: none;
           font-size: 14px; } }
-    .classy-nav-container .classy-navbar .classynav ul li.cn-dropdown-item ul li a {
+    .classy-nav-container .classy-navbar .classynav ul li.menu-item-has-children ul li a {
       font-size: 14px;
       text-transform: capitalize; }
     .classy-nav-container .classy-navbar .classynav ul li.current-item a::after {
@@ -464,15 +464,15 @@ ul {
 .classynav ul li.megamenu-item > a::after {
   color: #ffffff; }
 
-.breakpoint-off .classynav ul li .dropdown {
+.breakpoint-off .classynav ul li .sub-menu {
   background-color: #000000; }
 
-.classynav ul li .dropdown li a {
+.classynav ul li .sub-menu li a {
   border-bottom: none;
   height: 40px; }
 
-.classynav ul li .dropdown li .dropdown li .dropdown li a,
-.classynav ul li .dropdown li .dropdown li a {
+.classynav ul li .sub-menu li .sub-menu li .sub-menu li a,
+.classynav ul li .sub-menu li .sub-menu li a {
   border-bottom: none; }
 
 .top-search-area {
@@ -1357,23 +1357,23 @@ ul {
       .single-widget-area .widget-title {
         font-size: 24px; } }
 
-.catagories-list {
+.cat-item {
   position: relative;
   z-index: 1; }
-  .catagories-list li a {
+  .cat-item a {
     display: block;
     padding: 10px 0;
     font-size: 18px;
     color: #232323;
     font-weight: bold; }
     @media only screen and (max-width: 767px) {
-      .catagories-list li a {
+      .cat-item a {
         font-size: 16px; } }
-    .catagories-list li a:focus, .catagories-list li a:hover {
+    .cat-item a:focus, .cat-item a:hover {
       color: #f55656; }
-  .catagories-list li:first-child a {
+  .cat-item :first-child a {
     padding-top: 0; }
-  .catagories-list li:last-child a {
+  .cat-item :last-child a {
     padding-bottom: 0; }
 
 .single-news-area {
@@ -1410,13 +1410,13 @@ ul {
       font-weight: bold;
       letter-spacing: 1px; }
 
-.tags-list {
+.tagcloud {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
-  .tags-list li a {
+  .tagcloud a {
     display: inline-block;
     padding: 8px 20px;
     border: 1px solid #ebebeb;
@@ -1426,7 +1426,7 @@ ul {
     font-size: 12px;
     font-weight: 600;
     margin: 3px; }
-    .tags-list li a:focus, .tags-list li a:hover {
+    .tagcloud a:focus, .tagcloud a:hover {
       background-color: #f55656;
       color: #ffffff; }
 

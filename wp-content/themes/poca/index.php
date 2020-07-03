@@ -1,411 +1,80 @@
-<?php
-/**
- * The main template file
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package poca
- */
-
-get_header();
-?>
-
-<!-- ***** Welcome Area Start ***** -->
-<section class="welcome-area">
-    <!-- Welcome Slides -->
-    <div class="welcome-slides owl-carousel">
-
-      <!-- Single Welcome Slide -->
-      <div class="welcome-welcome-slide bg-img bg-overlay" style="background-image: url(<?php echo get_template_directory_uri(); ?>/img/bg-img/1.jpg)">
-        <div class="container h-100">
-          <div class="row h-100 align-items-center">
-            <div class="col-12">
-              <!-- Welcome Text -->
-              <div class="welcome-text">
-                <h2 data-animation="fadeInUp" data-delay="100ms">Subscribe Today</h2>
-                <h5 data-animation="fadeInUp" data-delay="300ms">Please schedule a podcast post, to make it visible here.</h5>
-                <div class="welcome-btn-group">
-                  <a href="#" class="btn poca-btn m-2 ml-0 active" data-animation="fadeInUp" data-delay="500ms">Subscribe with iTunes</a>
-                  <a href="#" class="btn poca-btn btn-2 m-2" data-animation="fadeInUp" data-delay="700ms">Subscribe with RSS</a>
-                </div>
-              </div>
-              <!-- Welcome Music Area -->
-              <div class="poca-music-area mt-100 d-flex align-items-center flex-wrap" data-animation="fadeInUp" data-delay="900ms">
-                <div class="poca-music-thumbnail">
-                  <img src="<?php echo get_template_directory_uri(); ?>/img/bg-img/4.jpg" alt="">
-                </div>
-                <div class="poca-music-content">
-                  <span class="music-published-date">December 9, 2018</span>
-                  <h2>Episode 203 - The Last Blockbuster</h2>
-                  <div class="music-meta-data">
-                    <p>By <a href="#" class="music-author">Admin</a> | <a href="#" class="music-catagory">Tutorials</a> | <a href="#" class="music-duration">00:02:56</a></p>
-                  </div>
-                  <!-- Music Player -->
-                  <div class="poca-music-player">
-                    <audio preload="auto" controls>
-                      <source src="audio/dummy-audio.mp3">
-                    </audio>
-                  </div>
-                  <!-- Likes, Share & Download -->
-                  <div class="likes-share-download d-flex align-items-center justify-content-between">
-                    <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Like (29)</a>
-                    <div>
-                      <a href="#" class="mr-4"><i class="fa fa-share-alt" aria-hidden="true"></i> Share(04)</a>
-                      <a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Single Welcome Slide -->
-      <div class="welcome-welcome-slide bg-img bg-overlay" style="background-image: url(<?php echo get_template_directory_uri(); ?>/img/bg-img/2.jpg);">
-        <div class="container h-100">
-          <div class="row h-100 align-items-center">
-            <div class="col-12">
-              <!-- Welcome Text -->
-              <div class="welcome-text">
-                <h2 data-animation="fadeInUp" data-delay="100ms">Listen Now</h2>
-                <h5 data-animation="fadeInUp" data-delay="300ms">Please schedule a podcast post, to make it visible here.</h5>
-                <div class="welcome-btn-group">
-                  <a href="#" class="btn poca-btn m-2 ml-0 active" data-animation="fadeInUp" data-delay="500ms">Subscribe with iTunes</a>
-                  <a href="#" class="btn poca-btn btn-2 m-2" data-animation="fadeInUp" data-delay="700ms">Subscribe with RSS</a>
-                </div>
-              </div>
-              <!-- Welcome Music Area -->
-              <div class="poca-music-area mt-100 d-flex align-items-center flex-wrap" data-animation="fadeInUp" data-delay="900ms">
-                <div class="poca-music-thumbnail">
-                  <img src="<?php echo get_template_directory_uri(); ?>/img/bg-img/4.jpg" alt="">
-                </div>
-                <div class="poca-music-content">
-                  <span class="music-published-date">December 8, 2018</span>
-                  <h2>Episode 202 - The Last Blockbuster</h2>
-                  <div class="music-meta-data">
-                    <p>By <a href="#" class="music-author">Admin</a> | <a href="#" class="music-catagory">Tutorials</a> | <a href="#" class="music-duration">00:02:56</a></p>
-                  </div>
-                  <!-- Music Player -->
-                  <div class="poca-music-player">
-                    <audio preload="auto" controls>
-                      <source src="audio/dummy-audio.mp3">
-                    </audio>
-                  </div>
-                  <!-- Likes, Share & Download -->
-                  <div class="likes-share-download d-flex align-items-center justify-content-between">
-                    <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Like (29)</a>
-                    <div>
-                      <a href="#" class="mr-4"><i class="fa fa-share-alt" aria-hidden="true"></i> Share(04)</a>
-                      <a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Single Welcome Slide -->
-      <div class="welcome-welcome-slide bg-img bg-overlay" style="background-image: url(<?php echo get_template_directory_uri(); ?>img/bg-img/3.jpg);">
-        <div class="container h-100">
-          <div class="row h-100 align-items-center">
-            <div class="col-12">
-              <!-- Welcome Text -->
-              <div class="welcome-text">
-                <h2 data-animation="fadeInUp" data-delay="100ms">Discover Today</h2>
-                <h5 data-animation="fadeInUp" data-delay="300ms">Please schedule a podcast post, to make it visible here.</h5>
-                <div class="welcome-btn-group">
-                  <a href="#" class="btn poca-btn m-2 ml-0 active" data-animation="fadeInUp" data-delay="500ms">Subscribe with iTunes</a>
-                  <a href="#" class="btn poca-btn btn-2 m-2" data-animation="fadeInUp" data-delay="700ms">Subscribe with RSS</a>
-                </div>
-              </div>
-              <!-- Welcome Music Area -->
-              <div class="poca-music-area mt-100 d-flex align-items-center flex-wrap" data-animation="fadeInUp" data-delay="900ms">
-                <div class="poca-music-thumbnail">
-                  <img src="<?php echo get_template_directory_uri(); ?>/img/bg-img/4.jpg" alt="">
-                </div>
-                <div class="poca-music-content">
-                  <span class="music-published-date">December 7, 2018</span>
-                  <h2>Episode 201 - The Last Blockbuster</h2>
-                  <div class="music-meta-data">
-                    <p>By <a href="#" class="music-author">Admin</a> | <a href="#" class="music-catagory">Tutorials</a> | <a href="#" class="music-duration">00:02:56</a></p>
-                  </div>
-                  <!-- Music Player -->
-                  <div class="poca-music-player">
-                    <audio preload="auto" controls>
-                      <source src="audio/dummy-audio.mp3">
-                    </audio>
-                  </div>
-                  <!-- Likes, Share & Download -->
-                  <div class="likes-share-download d-flex align-items-center justify-content-between">
-                    <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Like (29)</a>
-                    <div>
-                      <a href="#" class="mr-4"><i class="fa fa-share-alt" aria-hidden="true"></i> Share(04)</a>
-                      <a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-  <!-- ***** Welcome Area End ***** -->
-
-  <!-- ***** Latest Episodes Area Start ***** -->
-  <section class="poca-latest-epiosodes section-padding-80">
-    <div class="container">
-      <div class="row">
-        <!-- Section Heading -->
+<?php get_header(); ?>
+<!-- ***** Breadcrumb Area Start ***** -->
+<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(<?php echo get_template_directory_uri() ?>/img/bg-img/2.jpg)">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
         <div class="col-12">
-          <div class="section-heading text-center">
-            <h2>Latest Episodes</h2>
-            <div class="line"></div>
-          </div>
+          <h2 class="title mt-70">Blog</h2>
         </div>
       </div>
     </div>
-
-    <!-- Projects Menu -->
-    <div class="container">
-      <div class="poca-projects-menu mb-30 wow fadeInUp" data-wow-delay="0.3s">
-        <div class="text-center portfolio-menu">
-          <button class="btn active" data-filter="*">All</button>
-          <button class="btn" data-filter=".entre">Entrepreneurship</button>
-          <button class="btn" data-filter=".media">Media</button>
-          <button class="btn" data-filter=".tech">Tech</button>
-          <button class="btn" data-filter=".tutor">Tutorials</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row poca-portfolio">
-		<?php
-		if( have_posts() ) {
-			while( have_posts() ) {
-				the_post(); 
-		?>
-
-				<!-- Single gallery Item -->
-				<div class="col-12 col-md-6 single_gallery_item entre wow fadeInUp" data-wow-delay="0.2s">
-				<!-- Welcome Music Area -->
-				<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
-					<div class="poca-music-thumbnail">
-					<?php the_post_thumbnail(); ?>
-					</div>
-					<div class="poca-music-content text-center">
-					<span class="music-published-date mb-2"><?php the_date(); ?></span>
-					<h2><?php the_title(); ?></h2>
-					<div class="music-meta-data">
-						<p>By <a href="#" class="music-author"><?php the_author(); ?></a> | <a href="#" class="music-catagory">Tutorials</a> | <a href="#" class="music-duration"><?php the_time(); ?></a></p>
-					</div>
-					<!-- Music Player -->
-					<div class="poca-music-player">
-						<audio preload="auto" controls>
-						<source src="audio/dummy-audio.mp3">
-						</audio>
-					</div>
-					<!-- Likes, Share & Download -->
-					<div class="likes-share-download d-flex align-items-center justify-content-between">
-						<a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Like (29)</a>
-						<div>
-						<a href="#" class="mr-4"><i class="fa fa-share-alt" aria-hidden="true"></i> Share(04)</a>
-						<a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
-						</div>
-					</div>
-					</div>
-				</div>
-				</div>
-				<?php
-			}
-		}     
-		?>
-      </div>
-    </div>
-
+</div>
+  <div class="breadcumb--con">
     <div class="container">
       <div class="row">
-        <div class="col-12 text-center">
-          <a href="#" class="btn poca-btn mt-70">Load More</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ***** Latest Episodes Area End ***** -->
-
-  <!-- ***** Featured Guests Area Start ***** -->
-  <section class="featured-guests-area">
-    <div class="container">
-      <div class="row">
-        <!-- Section Heading -->
         <div class="col-12">
-          <div class="section-heading text-center">
-            <h2>Featured Guests</h2>
-            <div class="line"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row justify-content-around">
-        <!-- Single Featured Guest -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="single-featured-guest mb-80">
-            <img src="<?php echo get_template_directory_uri(); ?>/img/bg-img/25.jpg" alt="">
-            <div class="guest-info">
-              <h5>Alfred Day</h5>
-              <span>PRODUCER</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Single Featured Guest -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="single-featured-guest mb-80">
-            <img src="<?php echo get_template_directory_uri(); ?>/img/bg-img/26.jpg" alt="">
-            <div class="guest-info">
-              <h5>Jayden White</h5>
-              <span>DRUMMER</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Single Featured Guest -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="single-featured-guest mb-80">
-            <img src="<?php echo get_template_directory_uri(); ?>/img/bg-img/27.jpg" alt="">
-            <div class="guest-info">
-              <h5>Vincent Reid</h5>
-              <span>ENTREPRENEUR</span>
-            </div>
-          </div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Blog</li>
+            </ol>
+          </nav>
         </div>
       </div>
     </div>
-  </section>
-  <!-- ***** Featured Guests Area End ***** -->
+  </div>
+  <!-- ***** Breadcrumb Area End ***** -->
 
-   <!-- ***** Newsletter Area Start ***** -->
-   <section class="poca-newsletter-area bg-img bg-overlay pt-50 jarallax" style="background-image: url(<?php echo get_template_directory_uri(); ?>/img/bg-img/15.jpg)">
-    <div class="container">
-      <div class="row align-items-center">
-        <!-- Newsletter Content -->
-        <div class="col-12 col-lg-6">
-          <div class="newsletter-content mb-50">
-            <h2>Sign Up To Newsletter</h2>
-            <h6>Subscribe to receive info on our latest news and episodes</h6>
-          </div>
-        </div>
-        <!-- Newsletter Form -->
-        <div class="col-12 col-lg-6">
-          <div class="newsletter-form mb-50">
-            <form action="#" method="post">
-              <input type="email" name="nl-email" class="form-control" placeholder="Your Email">
-              <button type="submit" class="btn">Subscribe</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ***** Newsletter Area End ***** -->
-
-   <!-- ***** Footer Area Start ***** -->
-   <footer class="footer-area section-padding-80-0">
+  <!-- ***** Blog Area Start ***** -->
+  <section class="blog-area">
     <div class="container">
       <div class="row">
-
-        <!-- Single Footer Widget -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="single-footer-widget mb-80">
-            <!-- Widget Title -->
-            <h4 class="widget-title">About Us</h4>
-
-            <p>It is a long established fact that a reader will be distracted by the readable content.</p>
-            <div class="copywrite-content">
-              <p>&copy; 
-
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+        <div class="col-12 col-lg-8">
+        <?php 
+        if(have_posts()){
+          while(have_posts()){
+              the_post();
+    
+        ?>
+          <!-- Single Blog Area -->
+          <div class="single-blog-area mt-50 mb-50">
+            <a href="#" class="mb-30">
+             <?php the_post_thumbnail(); ?>
+            <!-- Content -->
+            <div class="post-content">
+              <a href="#" class="post-date"><?php the_date(); ?></a>
+              <a href="<?php the_permalink(); ?>" class="post-title"><?php the_title(); ?></a>
+              <div class="post-meta mb-15">
+                <a href="#" class="post-author"><?php the_author(); ?></a> |
+                <?php the_category(','); ?>
+                <!-- <a href="#" class="post-catagory"><?php //the_category(); ?></a> -->
+              </div>
+              <?php the_excerpt(); ?>
+              <a href="<?php the_permalink(); ?>" class="read-more-btn">Continue reading <i class="fa fa-angle-right" aria-hidden="true"></i></a>
             </div>
           </div>
+          <?php 
+          }
+        }
+          ?>
         </div>
 
-        <!-- Single Footer Widget -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="single-footer-widget mb-80">
-            <!-- Widget Title -->
-            <h4 class="widget-title">Categories</h4>
+        <?php get_sidebar(); ?>
 
-            <!-- Catagories Nav -->
-            <nav>
-              <ul class="catagories-nav">
-                <li><a href="#">Entrepreneurship</a></li>
-                <li><a href="#">Media</a></li>
-                <li><a href="#">Tech</a></li>
-                <li><a href="#">Tutorials</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+          <!-- Pagination -->
+          <!-- <div class="poca-pager d-flex mb-80">
+            <a href="#">Previous Post</a>
+            <a href="#">Next Post</a>
+          </div> -->
 
-        <!-- Single Footer Widget -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="single-footer-widget mb-80">
-            <!-- Widget Title -->
-            <h4 class="widget-title">Lastest Episodes</h4>
-
-            <!-- Single Latest Episodes -->
-            <div class="single-latest-episodes">
-              <p class="episodes-date">December 9, 2018</p>
-              <a href="#" class="episodes-title">Episode 205 - See Ya In Three!</a>
-            </div>
-            <!-- Single Latest Episodes -->
-            <div class="single-latest-episodes">
-              <p class="episodes-date">December 8, 2018</p>
-              <a href="#" class="episodes-title">Episode 204 - See Ya In Two!</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Single Footer Widget -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="single-footer-widget mb-80">
-            <!-- Widget Title -->
-            <h4 class="widget-title">Follow Us</h4>
-            <!-- Social Info -->
-            <div class="footer-social-info">
-              <a href="#" class="facebook" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="twitter" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="pinterest" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest"></i></a>
-              <a href="#" class="instagram" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="youtube" data-toggle="tooltip" data-placement="top" title="YouTube"><i class="fa fa-youtube-play"></i></a>
-            </div>
-            <!-- App Download Button -->
-            <div class="app-download-button mt-30">
-              <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/core-img/app-store.png" alt=""></a>
-              <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/core-img/google-play.png" alt=""></a>
-            </div>
-          </div>
-        </div>
-
+         
+        
       </div>
+           
     </div>
-  </footer>
-  <!-- ***** Footer Area End ***** -->
-	
-
-<?php
-get_sidebar();
-get_footer();
+    
+    
+  </section>
+  
+  <!-- ***** Blog Area End ***** -->
+<?php get_footer(); ?>

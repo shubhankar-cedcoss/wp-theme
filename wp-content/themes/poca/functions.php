@@ -96,7 +96,7 @@ if ( ! function_exists( 'poca_setup' ) ) :
 			array(
 				'height'      => 250,
 				'width'       => 250,
-				'flex-width'  => true,
+				'flex-width'    => true,
 				'flex-height' => true,
 			)
 		);
@@ -130,8 +130,8 @@ function poca_widgets_init() {
 			'name'          => esc_html__( 'Sidebar', 'poca' ),
 			'id'            => 'sidebar-1',
 			'description'   => esc_html__( 'Add widgets here.', 'poca' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
+			'before_widget' => '<div class="sidebar-area mt-5">',
+			'after_widget'  => '</div>',
 			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
 		)
@@ -209,3 +209,57 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+// Customize widgets .
+require get_stylesheet_directory() . '/inc/class-recent-post.php';
+new Recent_Post();
+
+/**
+ * Function to add icon class to category list.
+ *
+ * @param [type] $output is the content of wp_list_categories().
+ * @return $output
+ */
+function list_icon( $output ) {
+
+	$ptn = '/(<a.*?>)/';
+    $replace = '$1<i class="fa fa-angle-double-right" aria-hidden="true"></i> ';
+    return preg_replace( $ptn, $replace, $output );
+}
+add_filter( 'wp_list_categories', 'list_icon', 10, 1 );
+
+
+//using callback to change just html utput on a comment
+//html5 comment
+function my_comments_callback($comment, $args, $depth){
+	//checks if were using a div or ol|ul for our output
+	
+	?>
+	<li class="single_comment_area">
+		<!-- Comment Content -->
+		<div class="comment-content d-flex">
+			<!-- Comment Author -->
+			<div class="comment-author">
+				<?php echo get_avatar($comment, $size='60'); ?>
+			</div>
+			<!-- Comment Meta -->
+			<div class="comment-meta">
+				<a href="#" class="post-date"><?php comment_date(); ?></a>
+				<h5><?php comment_author(); ?></h5>
+				<p><?php comment_text(); ?></p>
+				<a href="#" class="like">Like</a>
+				<!-- <a href="#" class="reply">Reply</a> -->
+				<?php comment_reply_link( array_merge($args, array(
+					'reply_text' => __('Reply', 'textdomain'),
+					'depth'      => $depth,
+					'max_depth'  => $args['max_depth'],
+					)
+				));?>
+			</div>
+		</div>
+	
+	</li>
+		<?php 
+}
+?>
+					
+	
