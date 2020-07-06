@@ -30,7 +30,7 @@ get_header();
 				<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
 				<li class="breadcrumb-item"><a href="#">Blog</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Blog Single</li>
+				<li class="breadcrumb-item active" aria-current="page"><?php the_title(); ?></li>
 				</ol>
 			</nav>
 			</div>
@@ -66,12 +66,13 @@ get_header();
 						<!-- Post Details Text -->
 						<div class="post-details-text">
 							<?php the_post_thumbnail(); ?>
-
+							<br>
+							<br>
 							<div class="post-content">
 								<a href="#" class="post-date"><?php the_date(); ?></a>
 								<h2><?php the_title(); ?></h2>
 								<div class="post-meta">
-									<a href="#" class="post-author">By <?php the_author(); ?></a> |
+									<a href="#" class="post-author">By <?php the_author(); ?> </a> |
 									<a href="#" class="post-catagory"><?php the_category(','); ?></a>
 								</div>
 							</div>

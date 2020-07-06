@@ -45,7 +45,7 @@
               <a href="#" class="post-date"><?php the_date(); ?></a>
               <a href="<?php the_permalink(); ?>" class="post-title"><?php the_title(); ?></a>
               <div class="post-meta mb-15">
-                <a href="#" class="post-author"><?php the_author(); ?></a> |
+                <a href="#" class="post-author">By <?php the_author(); ?></a> |
 
                 <?php the_category(','); ?>
                 
@@ -58,6 +58,16 @@
           }
         }
           ?>
+
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center mb-4">
+          <li class="page-item">
+            <a class="page-link" href="#">&larr; Newer</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">Older &rarr;</a>            
+          </li>
+        </ul>  
         </div>
 
         <?php get_sidebar(); ?>

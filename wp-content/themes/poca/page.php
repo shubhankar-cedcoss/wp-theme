@@ -44,32 +44,46 @@ get_header();
   <!-- ***** Breadcrumb Area End ***** -->
 
 	<!-- ***** Contact Area Start ***** -->
-	<section class="poca-contact-area mt-50 mb-100">
+	 <!-- ****** About Us Area Start ******* -->
+   <section class="about-us-area section-padding-0-80 mt-50">
     <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="google-maps mb-100">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11956.9355465873!2d24.0768412544878!3d56.9550599906977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eecfb0e5073ded%3A0x400cfcd68f2fe30!2z4Kaw4Ka_4KaX4Ka-LCDgprLgp43gpq_gpr7gpp_gp43gpq3gpr_gpoY!5e0!3m2!1sbn!2sbd!4v1543911160102"
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-
-          <?php 
-            if( have_posts() ){
-              while(have_posts() ){
-                the_post();
-
-
-                the_content(); 
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="about-us-content">
+            <img src="<?php echo get_template_directory_uri() ?>/img/bg-img/20.jpg" class="mb-30" alt="">
+            <?php
+              if( have_posts() ) {
+                while( have_posts() ) {
+                  the_post();
+            ?>
+              <h1><?php the_title(); ?></h1>
+              <p><?php the_content(); ?></p>
+              <p><?php the_content(); ?></p>
+              <p><?php the_content(); ?></p>
+              <!-- Blockquote -->
+              <blockquote class="poca-blockquote d-flex">
+                <div class="icon">
+                  <i class="fa fa-quote-left" aria-hidden="true"></i>
+                </div>
+                <div class="text">
+                  <h5><?php the_content(); ?></h5>
+                  <h6><?php the_author(); ?></h6>
+                </div>
+              </blockquote>
+              <h2><?php the_content(); ?></h2>
+              <p><?php the_content(); ?></p>
+              <p><?php the_content(); ?></p>
+              <p><?php the_content(); ?></p>
+              <?php 
+                }
               }
-            }    
-          ?>
+              ?>
+            </div>
+        </div>
       </div>
     </div>
   </section>
-  <!-- ***** Contact Area End ***** -->
+  <!-- ****** About Us Area End ****** -->
 
 <?php
-get_sidebar();
 get_footer();
