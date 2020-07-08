@@ -1357,23 +1357,23 @@ ul {
       .single-widget-area .widget-title {
         font-size: 24px; } }
 
-.cat-item {
+.catagories-list {
   position: relative;
   z-index: 1; }
-  .cat-item a {
+  .catagories-list a {
     display: block;
     padding: 10px 0;
     font-size: 18px;
     color: #232323;
     font-weight: bold; }
     @media only screen and (max-width: 767px) {
-      .cat-item a {
+      .catagories-list a {
         font-size: 16px; } }
-    .cat-item a:focus, .cat-item a:hover {
+    .catagories-list a:focus, .catagories-list a:hover {
       color: #f55656; }
-  .cat-item :first-child a {
+  .catagories-list :first-child a {
     padding-top: 0; }
-  .cat-item :last-child a {
+  .catagories-list :last-child a {
     padding-bottom: 0; }
 
 .single-news-area {

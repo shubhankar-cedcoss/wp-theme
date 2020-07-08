@@ -210,8 +210,12 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 }
 
 // Customize widgets .
-require get_stylesheet_directory() . '/inc/class-recent-post.php';
-new Recent_Post();
+/**require get_stylesheet_directory() . '/inc/class-recent-post.php';
+new Recent_Post(); */
+
+// Customize widgets .
+/**require get_stylesheet_directory() . '/inc/class-categories.php';
+new WP_Custom_Categories(); */
 
 /**
  * Function to add icon class to category list.
