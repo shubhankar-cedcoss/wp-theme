@@ -228,7 +228,7 @@ function list_icon( $output ) {
 add_filter( 'wp_list_categories', 'list_icon', 10, 1 );
 
 
-//using callback to change just html utput on a comment
+//using callback to change just html output on a comment
 //html5 comment
 function my_comments_callback($comment, $args, $depth){
 	//checks if were using a div or ol|ul for our output

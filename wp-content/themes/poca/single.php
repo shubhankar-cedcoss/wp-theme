@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  * The template for displaying all single posts
  *
@@ -13,15 +13,15 @@ get_header();
 	<main id="primary" class="site-main">
 
 	<!-- ***** Breadcrumb Area Start ***** -->
-	<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(<?php echo get_template_directory_uri() ?>/img/bg-img/2.jpg);">
+	<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(<?php echo get_template_directory_uri(); ?>/img/bg-img/2.jpg);">
 		<div class="container h-100">
 		<div class="row h-100 align-items-center">
 			<div class="col-12">
-			<h2 class="title mt-70"><?php the_title(); ?></h2>
+			<h2 class="title mt-70">Blog Single</h2>
 			</div>
 		</div>
 		</div>
-	</div>
+  	</div>
 	<div class="breadcumb--con">
 		<div class="container">
 		<div class="row">
@@ -81,71 +81,74 @@ get_header();
 
 
 						<!-- Post Catagories -->
-						<div class="post-catagories d-flex align-items-center">
-							<h6>Categories:</h6>
-							<ul class="d-flex flex-wrap align-items-center">
-							<li><a href="#"><?php the_category(',') ?></a></li>
-							
-							</ul>
-						</div>
-
-						<!-- Pagination -->
-						<div class="poca-pager d-flex mb-30">
-							<?php
-							$pre_post = get_adjacent_post(false,'', true);
-							$next_post = get_adjacent_post(false,'',false);
-							?>
-							<a href="<?php echo get_permalink($pre_post->ID) ?>">Previous Post <span><?php echo ($pre_post->post_title) ?></span></a>
-							<a href="<?php echo get_permalink($next_post->ID) ?>">Next Post <span><?php echo ($next_post->post_title) ?></span></a>
-						</div>
-
-						<?php
-							}
-						}	
-						?>
-
-						<!-- Comments Area -->
-						<?php
-							if ( comments_open() ) {
-								?>
-								<div class="comments-area">
-									<?php comments_template(); ?>
-								</div>
-								<?php
-							}
-						?>
-
-						<div class="contact-form">
-							<?php
-								$comment_name= 'Name';//placeholder
-								$comment_email= 'Email';
-								$comment_body= 'Comment';
-
-								$args =  array(
-								'fields' => array(
-									'author' => '<div class="col-lg-6">
-												<input type="text" name="author" id="author" class="form-control mb-30" placeholder="'. $comment_name .'">
-												</div>',
-									
-									'email'  => '<div class="col-lg-6">
-												<input type="email" name="email" id="email" class="form-control mb-30" placeholder="'. $comment_email .'">
-												</div>',
-
-								),
-								'comment_field' => '<div class="col-12">
-												<textarea name="comment" id="comment" class="form-control mb-30" placeholder="'. $comment_body .'"></textarea>
-												</div>',
-								'submit_button' => '<div class="col-12">
-												<button name="%1$s" type="submit" id="%2$s" value="%4$s"  class="btn poca-btn mt-30 %3$s">Post Comment</button>
-												</div>',
+							<div class="post-catagories d-flex align-items-center">
+								<h6>Categories:</h6>
+								<ul class="d-flex flex-wrap align-items-center">
+								<li><a href="#"><?php the_category(',') ?></a></li>
 								
-								'title_reply' => '<h5> Leave A Comment </h5>', 
-							);
-							
-							comment_form($args)
+								</ul>
+							</div>
+
+							<!-- Pagination -->
+							<div class="poca-pager d-flex mb-30">
+								<?php
+								$pre_post = get_adjacent_post(false,'', true);
+								$next_post = get_adjacent_post(false,'',false);
+								?>
+								<a href="<?php echo get_permalink($pre_post->ID) ?>">Previous Post <span><?php echo ($pre_post->post_title) ?></span></a>
+								<a href="<?php echo get_permalink($next_post->ID) ?>">Next Post <span><?php echo ($next_post->post_title) ?></span></a>
+							</div>
+
+							<?php
+								}
+							}	
 							?>
+
+							<!-- Comments Area -->
+							<div>
+							<?php
+								if ( comments_open() ) {
+									?>
+									<div class="comments-area">
+										<?php comments_template(); ?>
+									</div>
+									<?php
+								}
+							?>
+							</div>						
+							
+
+							<div class="contact-form">
+								<?php
+									$comment_name= 'Name';//placeholder
+									$comment_email= 'Email';
+									$comment_body= 'Comment';
+
+									$args =  array(
+									'fields' => array(
+										'author' => '<div class="col-lg-6">
+													<input type="text" name="author" id="author" class="form-control mb-30" placeholder="'. $comment_name .'">
+													</div>',
+										
+										'email'  => '<div class="col-lg-6">
+													<input type="email" name="email" id="email" class="form-control mb-30" placeholder="'. $comment_email .'">
+													</div>',
+
+									),
+									'comment_field' => '<div class="col-12">
+													<textarea name="comment" id="comment" class="form-control mb-30" placeholder="'. $comment_body .'"></textarea>
+													</div>',
+									'submit_button' => '<div class="col-12">
+													<button name="%1$s" type="submit" id="%2$s" value="%4$s"  class="btn poca-btn mt-30 %3$s">Post Comment</button>
+													</div>',
+									
+									'title_reply' => '<h5> Leave A Comment </h5>', 
+								);
+								
+								comment_form($args)
+								?>
+							</div>
 						</div>
-					</div>
 				</div>
 				
 			</div>
