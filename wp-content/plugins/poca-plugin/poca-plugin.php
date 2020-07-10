@@ -34,6 +34,32 @@ function plugin_deactivate() {
 }
 register_deactivation_hook( __FILE__, 'plugin_deactivate' );
 
+/**
+ * Enqueuing scripts
+ *
+ * @param [string] $hook stores current files .
+ */
+function poca_enqueue_script() {
+	wp_enqueue_script(
+		'poca-load',
+		plugins_url( '/js/poca.js', __FILE__ ),
+		array( 'jquery' ),
+		_S_VERSION,
+		true
+	);
+	$title_nonce = wp_create_nonce( 'title_example' );
+	wp_localize_script(
+		'poca-load',
+		'poca_ajax_obj',
+		array(
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce'    => $title_nonce,
+		)
+	);
+}
+
+add_action( 'wp_enqueue_scripts', 'poca_enqueue_script' );
+
 
 /**
  * Create post type
@@ -121,5 +147,65 @@ require plugin_dir_path( __FILE__ ) . 'inc/class-categories.php';
 require plugin_dir_path( __FILE__ ) . 'inc/class-recent-post.php';
 
 
+function poca_load_more( $post ) {
+	$page_per_post = $_POST['post_per_page'];
+	$page          = $_POST['page'];
+	$args          = array(
+		'post_type'      => 'podcast',
+		'post_status'    => 'publish',
+		'posts_per_page' => $page_per_post,
+		'paged'          => $page,
+	);
 
+	$loop = new WP_Query( $args );?>
+	<div class="row poca-portfolio">
+	<?php
+
+	while ( $loop->have_posts() ) {
+		$loop->the_post();
+		?>
+		<div class="col-12 col-md-6 single_gallery_item entre wow fadeInUp" data-wow-delay="0.2s"> 
+		<!-- Welcome Music Area -->
+			<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
+				<div class="poca-music-thumbnail">
+					<?php the_post_thumbnail(); ?>
+				</div>
+				<div class="poca-music-content text-center">
+					<span class="music-published-date mb-2"><?php echo get_the_date(); ?></span>
+					<h2><?php the_title(); ?></h2>
+				<?php
+				$list = wp_get_post_terms( $post->ID, 'Category_taxonomy', array( 'fields' => 'all' ) );
+				// print_r($list) .
+				foreach ( $list as $taxonomies ) {
+					?>   
+					<div class="music-meta-data">
+						<p>By <a href="#" class="music-author"><?php the_author(); ?></a> | <a href="<?php echo $taxonomies->slug; ?>" class="music-catagory"><?php echo $taxonomies->name; ?></a> | <a href="#" class="music-duration">00:02:56</a></p>
+					</div>
+				<?php } ?>
+					<!-- Music Player -->
+					<div class="poca-music-player">
+						<audio preload="auto" controls>
+						<source src="<?php echo get_template_directory_uri(); ?>/audio/dummy-audio.mp3">
+						</audio>
+					</div>
+					<!-- Likes, Share & Download -->
+					<div class="likes-share-download d-flex align-items-center justify-content-between">
+						<a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Like (29)</a>
+						<div>
+							<a href="#" class="mr-4"><i class="fa fa-share-alt" aria-hidden="true"></i> Share(04)</a>
+							<a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
+						</div>
+					</div>
+				</div>                    
+			</div>
+		</div>
+		<?php
+		wp_reset_postdata();
+	}
+	?>
+	</div>
+	<?php
+}
+
+add_action( 'wp_ajax_poca_request', 'poca_load_more' );
 

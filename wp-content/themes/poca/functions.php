@@ -159,7 +159,7 @@ function poca_scripts() {
 	wp_enqueue_script( 'poca-audioplayer', get_template_directory_uri() . '/js/default-assets/audioplayer.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'poca-console', get_template_directory_uri() . '/js/default-assets/avoid.console.error.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'poca-scrollup', get_template_directory_uri() . '/js/default-assets/jquery.scrollup.min.js', array(), _S_VERSION, true );
-	
+
 	
 
 	wp_style_add_data( 'poca-style', 'rtl', 'replace' );

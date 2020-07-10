@@ -105,14 +105,14 @@ get_header();
       </div>
     </div>
     
-    <div class="container">
+    <div id="poca-portfolio" class="container">
         <div class="row poca-portfolio">   
         <!-- Single gallery Item -->
-            <?php
+        <?php
             $args = array(  
-            'post_type'      => 'podcast',
-            'post_status'    => 'publish',
-            'posts_per_page' => 6,
+              'post_type'      => 'podcast',
+              'post_status'    => 'publish',
+              'posts_per_page' => 2,
             ); 
         
             $loop = new WP_Query( $args ); 
@@ -165,15 +165,11 @@ get_header();
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <a href="#" class="btn poca-btn mt-70">Load More</a>
+          <a href="javascript:void(0)" id="load" class="btn poca-btn mt-70 ">Load More</a>
         </div>
       </div>
     </div>
   </section>
   <!-- ***** Latest Episodes Area End ***** -->
-    
-
-
-
 
   <?php get_footer(); ?>
