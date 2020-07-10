@@ -217,20 +217,6 @@ new Recent_Post(); */
 /**require get_stylesheet_directory() . '/inc/class-categories.php';
 new WP_Custom_Categories(); */
 
-/**
- * Function to add icon class to category list.
- *
- * @param [type] $output is the content of wp_list_categories().
- * @return $output
- */
-function list_icon( $output ) {
-
-	$ptn = '/(<a.*?>)/';
-    $replace = '$1<i class="fa fa-angle-double-right" aria-hidden="true"></i> ';
-    return preg_replace( $ptn, $replace, $output );
-}
-add_filter( 'wp_list_categories', 'list_icon', 10, 1 );
-
 
 //using callback to change just html output on a comment
 //html5 comment
@@ -301,7 +287,3 @@ function comment_after_fields() {
 add_action('comment_form_after_fields', 'comment_after_fields');
 
 ?>
-
-
-					
-	

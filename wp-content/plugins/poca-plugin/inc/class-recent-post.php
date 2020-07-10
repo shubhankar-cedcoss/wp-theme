@@ -71,6 +71,7 @@ class Recent_Post_customizer extends WP_Widget {
 			apply_filters(
 				'widget_posts_args',
 				array(
+					'post_type'           => 'podcast',
 					'posts_per_page'      => $number,
 					'no_found_rows'       => true,
 					'post_status'         => 'publish',
@@ -103,10 +104,10 @@ class Recent_Post_customizer extends WP_Widget {
 				?>
 				<div class="single-news-area d-flex">
 					<div class="blog-thumbnail">
-						<?php echo get_the_post_thumbnail($recent_post->ID); ?>
+						<?php echo get_the_post_thumbnail( $recent_post->ID ); ?>
 					</div>
 					<div class="blog-content">
-						<a class="post-title" href="<?php the_permalink( $recent_post->ID ); ?>"<?php echo $aria_current; ?>><?php echo $title; ?></a>
+						<a class="post-title" href="<?php the_permalink( $recent_post->ID ); ?>"<?php esc_html( $aria_current ); ?>><?php echo $title; ?></a>
 
 						<span class="post-date"><?php echo get_the_date( '', $recent_post->ID ); ?></span>
 					</div>

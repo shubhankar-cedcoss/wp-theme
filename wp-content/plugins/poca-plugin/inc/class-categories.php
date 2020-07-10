@@ -125,7 +125,25 @@ class WP_Custom_Categories extends WP_Widget {
 			 * @param array $cat_args An array of Categories widget options.
 			 * @param array $instance Array of settings for the current widget.
 			 */
-			wp_list_categories( apply_filters( 'widget_categories_args', $cat_args, $instance ) );
+			// wp_list_categories( apply_filters( 'widget_categories_args', $cat_args, $instance ) );.
+			$categories = get_categories(
+				array(
+					'taxonomy'   => 'Category_taxonomy',
+					'hide_empty' => false,
+				),
+				$instance
+			);
+			foreach ($categories as $category)
+			echo '<ul>';
+
+			foreach ( $categories as $category) {
+				$url = get_term_link( $category );
+				?>
+				<li><a href="<?php echo $url;?>"><i class="fa fa-angle-double-right" aria-hidden="true"></i><?php echo $category->name; ?></a></li>
+				<?php
+			}
+
+			echo '</ul>';
 			?>
 		</ul>
 			<?php

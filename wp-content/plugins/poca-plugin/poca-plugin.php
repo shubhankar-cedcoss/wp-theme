@@ -115,9 +115,11 @@ function custom_taxonomy() {
 add_action( 'init', 'custom_taxonomy' );
 
 // Customize widget.
-require plugin_dir_path( __FILE__ ) . 'inc/class-categories.php' ;
+require plugin_dir_path( __FILE__ ) . 'inc/class-categories.php';
 
 // Customize widgets.
-require plugin_dir_path(__FILE__) . 'inc/class-recent-post.php' ;
+require plugin_dir_path( __FILE__ ) . 'inc/class-recent-post.php';
+
+
 
 
