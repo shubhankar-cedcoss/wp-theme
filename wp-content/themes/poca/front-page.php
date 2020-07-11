@@ -181,21 +181,32 @@ get_header();
       <div class="poca-projects-menu mb-30 wow fadeInUp" data-wow-delay="0.3s">
         <div class="text-center portfolio-menu">
           <button class="btn active" data-filter="*">All</button>
-          <button class="btn" data-filter=".entre">Entrepreneurship</button>
+          <?php
+          $category = get_terms(array(
+                      'taxonomy' => 'Category_taxonomy',
+                      'hide_empty' => false
+          ));
+          foreach($category as $cat){
+            ?>
+          <button class="btn" data-filter="<?php echo $cat->slug; ?>"><?php echo $cat->name; ?></button>
+          <?php
+          }
+          ?>
+          <!-- <button class="btn" data-filter=".entre">Entrepreneurship</button>
           <button class="btn" data-filter=".media">Media</button>
           <button class="btn" data-filter=".tech">Tech</button>
-          <button class="btn" data-filter=".tutor">Tutorials</button>
+          <button class="btn" data-filter=".tutor">Tutorials</button> -->
         </div>
       </div>
     </div>
 
-    <div class="container">
+    <div id="poca-portfolio" class="container">
       <div class="row poca-portfolio">
 		<?php
 		 $args = array(  
             'post_type'      => 'podcast',
             'post_status'    => 'publish',
-            'posts_per_page' => 6,
+            'posts_per_page' => 2,
         ); 
 		
             $loop = new WP_Query( $args ); 
@@ -249,7 +260,7 @@ get_header();
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <a href="#" class="btn poca-btn mt-70">Load More</a>
+          <a href="javascript:void(0)" id="load" class="btn poca-btn mt-70">Load More</a>
         </div>
       </div>
     </div>

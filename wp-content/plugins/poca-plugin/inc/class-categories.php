@@ -133,19 +133,22 @@ class WP_Custom_Categories extends WP_Widget {
 				),
 				$instance
 			);
-			foreach ($categories as $category)
+			foreach ( $categories as $category )
 			echo '<ul>';
 
-			foreach ( $categories as $category) {
+			foreach ( $categories as $category ) {
 				$url = get_term_link( $category );
 				?>
-				<li><a href="<?php echo $url;?>"><i class="fa fa-angle-double-right" aria-hidden="true"></i><?php echo $category->name; ?></a></li>
+				<li><a href="<?php echo $url; ?>"><i class="fa fa-angle-double-right" aria-hidden="true"></i><?php echo $category->name; ?></a></li><br>
 				<?php
 			}
 
 			echo '</ul>';
+
 			?>
+
 		</ul>
+
 			<?php
 		}
 

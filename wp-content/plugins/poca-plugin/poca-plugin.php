@@ -36,8 +36,6 @@ register_deactivation_hook( __FILE__, 'plugin_deactivate' );
 
 /**
  * Enqueuing scripts
- *
- * @param [string] $hook stores current files .
  */
 function poca_enqueue_script() {
 	wp_enqueue_script(
@@ -146,7 +144,12 @@ require plugin_dir_path( __FILE__ ) . 'inc/class-categories.php';
 // Customize widgets.
 require plugin_dir_path( __FILE__ ) . 'inc/class-recent-post.php';
 
-
+/**
+ * Load-more ajax
+ *
+ * @param [string] $post stores current files
+ * callback functions.
+ */
 function poca_load_more( $post ) {
 	if ( ! empty( $_REQUEST['nonce'] ) ) {
 
@@ -156,18 +159,37 @@ function poca_load_more( $post ) {
 		}
 	}
 	if ( isset( $_POST['post_per_page'] ) ) {
-		$page_per_post = sanitize_text_field( wp_unslash( $_POST['post_per_page'] ) );
+		$post_per_page = sanitize_text_field( wp_unslash( $_POST['post_per_page'] ) );
 	}
 
 	if ( isset( $_POST['page'] ) ) {
 		$page = sanitize_text_field( wp_unslash( $_POST['page'] ) );
 	}
-	$args = array(
-		'post_type'      => 'podcast',
-		'post_status'    => 'publish',
-		'posts_per_page' => $page_per_post,
-		'paged'          => $page,
-	);
+
+	if ( isset( $_POST['category'] ) ) {
+		$category = sanitize_text_field( wp_unslash( $_POST['category'] ) );
+	}
+
+	if ( '*' === $category ) {
+		$args = array(
+			'post_type'      => 'podcast',
+			'post_status'    => 'publish',
+			'posts_per_page' => $post_per_page,
+		);
+	} else {
+		$args = array(
+			'post_type'      => 'podcast',
+			'post_status'    => 'publish',
+			'posts_per_page' => $post_per_page,
+			'tax_query'      => array(
+				array(
+					'taxonomy' => 'Category_taxonomy',
+					'terms'    => $category,
+					'field'    => 'slug',
+				),
+			),
+		);
+	}
 
 	$loop = new WP_Query( $args );?>
 	<div class="row poca-portfolio">
@@ -186,14 +208,17 @@ function poca_load_more( $post ) {
 					<span class="music-published-date mb-2"><?php echo get_the_date(); ?></span>
 					<h2><?php the_title(); ?></h2>
 				<?php
-				$list = wp_get_post_terms( $post->ID, 'Category_taxonomy', array( 'fields' => 'all' ) );
+				$list = wp_get_post_terms( $loop->post->ID, 'Category_taxonomy', array( 'fields' => 'all' ) );
 
-				foreach ( $list as $taxonomies ) {
-				?>   
+				?>
 					<div class="music-meta-data">
-						<p>By <a href="#" class="music-author"><?php the_author(); ?></a> | <a href="<?php echo $taxonomies->slug; ?>" class="music-catagory"><?php echo $taxonomies->name; ?></a> | <a href="#" class="music-duration">00:02:56</a></p>
+						<p>By <a href="#" class="music-author"><?php the_author(); ?></a> |
+						<?php
+						foreach ( $list as $taxonomies ) {
+							?>
+						<a href="<?php echo $taxonomies->slug; ?>" class="music-catagory"><?php echo $taxonomies->name; ?></a> <?php } ?>| <a href="#" class="music-duration">00:02:56</a></p>
 					</div>
-				<?php } ?>
+
 					<!-- Music Player -->
 					<div class="poca-music-player">
 						<audio preload="auto" controls>

@@ -127,7 +127,9 @@ function my_enqueue_ajax( $hook ) {
 	wp_enqueue_script(
 		'ajax-script',
 		plugins_url( '/js/simple-ajax-example.js', __FILE__ ),
-		array( 'jquery' )
+		array( 'jquery' ),
+		_S_VERSION,
+		true
 	);
 	$title_nonce = wp_create_nonce( 'title_example' );
 	wp_localize_script(
@@ -499,7 +501,9 @@ function my_enqueue( $hook ) {
 	wp_enqueue_script(
 		'ajax-script',
 		plugins_url( '/js/simple-ajax-example.js', __FILE__ ),
-		array( 'jquery' )
+		array( 'jquery' ),
+		_S_VERSION,
+		true
 	);
 	$title_nonce = wp_create_nonce( 'title_example' );
 	wp_localize_script(
