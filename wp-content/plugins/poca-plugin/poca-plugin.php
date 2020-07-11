@@ -148,9 +148,21 @@ require plugin_dir_path( __FILE__ ) . 'inc/class-recent-post.php';
 
 
 function poca_load_more( $post ) {
-	$page_per_post = $_POST['post_per_page'];
-	$page          = $_POST['page'];
-	$args          = array(
+	if ( ! empty( $_REQUEST['nonce'] ) ) {
+
+		$nonce = sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) );
+		if ( ! wp_verify_nonce( $nonce, 'nonce' ) ) {
+			echo 'Nonce value cannot be verified';
+		}
+	}
+	if ( isset( $_POST['post_per_page'] ) ) {
+		$page_per_post = sanitize_text_field( wp_unslash( $_POST['post_per_page'] ) );
+	}
+
+	if ( isset( $_POST['page'] ) ) {
+		$page = sanitize_text_field( wp_unslash( $_POST['page'] ) );
+	}
+	$args = array(
 		'post_type'      => 'podcast',
 		'post_status'    => 'publish',
 		'posts_per_page' => $page_per_post,
@@ -175,9 +187,9 @@ function poca_load_more( $post ) {
 					<h2><?php the_title(); ?></h2>
 				<?php
 				$list = wp_get_post_terms( $post->ID, 'Category_taxonomy', array( 'fields' => 'all' ) );
-				// print_r($list) .
+
 				foreach ( $list as $taxonomies ) {
-					?>   
+				?>   
 					<div class="music-meta-data">
 						<p>By <a href="#" class="music-author"><?php the_author(); ?></a> | <a href="<?php echo $taxonomies->slug; ?>" class="music-catagory"><?php echo $taxonomies->name; ?></a> | <a href="#" class="music-duration">00:02:56</a></p>
 					</div>

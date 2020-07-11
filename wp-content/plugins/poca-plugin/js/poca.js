@@ -11,7 +11,7 @@ jQuery(document).ready(function($){
                 'action' : 'poca_request',
                 'post_per_page' : 2,
                 'page' : page,
-                'nonce' : poca_ajax_obj.nonce,
+                'nonce' : poca_ajax_obj.ajax_nonce,
             },
 
             success: function( data ) {
