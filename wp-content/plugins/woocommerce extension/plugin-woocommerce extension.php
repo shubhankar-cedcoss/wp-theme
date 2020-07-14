@@ -106,4 +106,33 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	}
 
 	WC_Settings_Tab_Demo::init();
+
+	if ( ! defined( 'ABSPATH' ) ) {
+		exit;
+	}
+
+	/**
+	 * Define constants
+	 */
+	if ( ! defined( 'TPWCP_PLUGIN_VERSION' ) ) {
+		define( 'TPWCP_PLUGIN_VERSION', '1.0.0' );
+	}
+	if ( ! defined( 'TPWCP_PLUGIN_DIR_PATH' ) ) {
+		define( 'TPWCP_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
+	}
+
+	require( TPWCP_PLUGIN_DIR_PATH . '/classes/class-tpwcp-admin.php' );
+
+	/**
+	 * Start the plugin.
+	 */
+	function tpwcp_init() {
+		if ( is_admin() ) {
+			$TPWCP = new TPWCP_Admin();
+			$TPWCP->init();
+		}
+	}
+	add_action( 'plugins_loaded', 'tpwcp_init' );
 }
+
+
